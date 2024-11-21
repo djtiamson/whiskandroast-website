@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .test-section {
+            margin-top: 30px;
+        }
+        .test-section h2 {
+            color: #555;
+        }
+        input, textarea, button {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        input[type="text"] {
+            width: 300px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Testing Page</h1>
+    
+    <!-- Test Section 1: Basic Form -->
+    <div class="test-section">
+        <h2>Test Form</h2>
+        <form id="testForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Test Section 2: Links and Buttons -->
+    <div class="test-section">
+        <h2>Test Links</h2>
+        <p>
+            <a href="https://www.example.com" target="_blank">Go to Example.com</a>
+        </p>
+        <button onclick="alert('Button clicked!')">Click Me!</button>
+    </div>
+
+    <!-- Test Section 3: Input Validation -->
+    <div class="test-section">
+        <h2>Test Input Validation</h2>
+        <form id="inputValidationForm">
+            <label for="number">Enter a number (1-10):</label>
+            <input type="number" id="number" name="number" min="1" max="10" required>
+            <br>
+            <button type="submit">Submit Number</button>
+        </form>
+    </div>
+
+    <!-- Test Section 4: JavaScript Event -->
+    <div class="test-section">
+        <h2>Test JavaScript Event</h2>
+        <button onclick="changeText()">Change Text</button>
+        <p id="text">This is some text.</p>
+    </div>
+
+    <script>
+        // Form validation and event handling
+        document.getElementById("testForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Form Submitted! Name: " + document.getElementById("name").value);
+        });
+
+        document.getElementById("inputValidationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const number = document.getElementById("number").value;
+            if (number < 1 || number > 10) {
+                alert("Please enter a number between 1 and 10.");
+            } else {
+                alert("Number submitted: " + number);
+            }
+        });
+
+        function changeText() {
+            document.getElementById("text").innerText = "The text has been changed!";
+        }
+    </script>
+
+</body>
+</html>
