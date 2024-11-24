@@ -9995,16 +9995,12 @@ h6,
   transition: .5s;
 }
 
-.product-item:hover {
-  background: #1f1d1d !important;
-}
-
 .product-item:hover h5 {
   color: #FFFFFF !important;
 }
 
 .product-item:hover .btn {
-  background: #93512c !important;
+  background: #342212 !important;
 }
 
 .portfolio-item::after {
