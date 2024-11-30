@@ -2375,6 +2375,19 @@ fieldset:disabled a.btn {
   border-color: #1f1d1d;
 }
 
+.btn-primary-cancel {
+  color: #212529;
+  background-color: white;
+  border-color: #1f1d1d;
+  margin-top: 15px;
+}
+
+.btn-primary-cancel:hover {
+  color: #212529;
+  background-color: #93512c;
+  border-color: #342212;
+}
+
 .btn-primary:hover {
   color: #212529;
   background-color: #342212;
