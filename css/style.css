@@ -10149,3 +10149,88 @@ h6,
     border-right: none !important;
   }
 }
+
+
+/*--order summary products--*/
+
+.os-page{
+  margin: 8px auto;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-info{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 600px) {
+  .product-info h5{
+    display: none;
+  }
+}
+
+th{
+  text-align: left;
+  padding: 5px;
+  color: #fff;
+  background: #93512c;
+}
+
+td{
+  padding: 10px 5px;
+}
+
+td input{
+  width: 40px;
+  height: 30px;
+  padding: 5px;
+}
+
+td a{
+  color: #342212;
+  font-size: 12px;
+}
+
+td img{
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.total-price{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.total-price table{
+  border-top: 3px solid #93512c;
+  width: 100%;
+  max-width: 420px;
+}
+
+td:last-child{
+  text-align: right;
+}
+
+th:last-child{
+  text-align: right;
+}
+
+
+/*order summary products*/
+
+.price {
+  display: flex;
+  align-items: center;
+  width: 98%;
+  height: 110px;
+
+}
+
+.product{
+  justify-content: space-between;
+}
