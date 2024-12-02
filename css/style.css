@@ -2375,6 +2375,19 @@ fieldset:disabled a.btn {
   border-color: #1f1d1d;
 }
 
+.btn-primary-cancel {
+  color: #212529;
+  background-color: white;
+  border-color: #1f1d1d;
+  margin-top: 15px;
+}
+
+.btn-primary-cancel:hover {
+  color: #212529;
+  background-color: #93512c;
+  border-color: #342212;
+}
+
 .btn-primary:hover {
   color: #212529;
   background-color: #342212;
@@ -10135,4 +10148,142 @@ h6,
   .footer .border-right {
     border-right: none !important;
   }
+}
+
+
+/*--order summary products--*/
+
+.os-page{
+  margin: 8px auto;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-info{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 600px) {
+  .product-info h5{
+    display: none;
+  }
+}
+
+th{
+  text-align: left;
+  padding: 5px;
+  color: #fff;
+  background: #93512c;
+}
+
+td{
+  padding: 10px 5px;
+}
+
+td input{
+  width: 40px;
+  height: 30px;
+  padding: 5px;
+}
+
+td a{
+  color: #342212;
+  font-size: 12px;
+}
+
+td img{
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.total-price{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.total-price table{
+  border-top: 3px solid #93512c;
+  width: 100%;
+  max-width: 420px;
+}
+
+td:last-child{
+  text-align: right;
+}
+
+th:last-child{
+  text-align: right;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  width: 98%;
+  height: 110px;
+
+}
+
+.product{
+  justify-content: space-between;
+}
+/*order summary products*/
+
+/*order confirmation*/
+.info-box{
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem;
+
+}
+
+.form{
+  width: 100%;
+  max-width: 1000px;
+  height: 700px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
+
+.order-info{
+  background-color: white;
+}
+
+.order-form{
+  background-color: #93512c;
+}
+
+.os{
+  margin: 25px;
+  color: white;
+}
+
+.title{
+  color: white;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 0.7rem;
+}
+
+.price-white{
+  color: white;
+}
+
+.cust-info{
+  margin: 25px;
+
+ 
 }
