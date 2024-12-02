@@ -82,7 +82,7 @@
                 </div>
             </nav>
         </div>
-    </div>
+    </div><br>
     <!-- Navbar End -->
 
 
@@ -99,131 +99,72 @@
     </div>
      Header End -->
 
-
-    <!-- Contact Start -->
-    <div class="container-fluid py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-9">
-                    <div class="contact-form bg-light rounded p-5">
-                        <div class="row">
-                            </div>
-                            <h5 class="font-weight-bold mb-2">Order Summary</h5>
-                            <!--SAMPLE-One product line in order-->
-                            <div class="small-cont os-page">
-                                <table>
-                                    <tr>
-                                        <th>
-                                            Product
-                                        </th>
-                                        <th>
-                                            Quantity
-                                        </th>
-                                        <th>
-                                            Subtotal
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="product-info">                                           
-                                            <span class="product"><img src="./products/americano.jpeg" alt="ProductImg"></span>
-                                        <div>
-                                            <h5 class="font-weight-bold mb-2">Americano</h5>
-                                            <p class="mb-0">Price: ₱100.00</p>
-                                            <a href="">Remove <!--remove product from order summary--> </a>                       
-                                        </div>
-                                        </div>
-                                            
-                                        </td>
-                                        <td>
-                                            <input type="number" value="1">
-                                        </td>
-                                        <td>
-                                            ₱100.00
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <div class="total-price">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                Subtotal
-                                            </td>
-                                            <td>
-                                                ₱100.00
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Shipping
-                                            </td>
-                                            <td>
-                                                ₱60.00
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Total
-                                            </td>
-                                            <td>
-                                                ₱160.00
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-
-                            
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                             <div class="control-group">
-                                <label class="font-weight-bold mb-3">Contact</label>
-                                <input type="text" class="form-control p-4" id="email" placeholder="Email" required="required" data-validation-required-message="Please enter your email" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="pnum" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="form-row">
-                            <div class="col-sm-6 control-group">
-                                    <input type="text" class="form-control p-4" id="Fname" placeholder="First Name" required="required" data-validation-required-message="Please enter your first name" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="col-sm-6 control-group">
-                                    <input type="text" class="form-control p-4" placeholder="Last Name" required="required" data-validation-required-message="Please enter your last name" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="address" placeholder="Address" required="required" data-validation-required-message="Please enter your address" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="city" placeholder="City" required="required" data-validation-required-message="Please enter your city" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-
-                            <div class="control-group">
-                                <textarea class="form-control p-4" rows="2" id="Notes" placeholder="Notes"></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
+    <div class="container">
+        <div class="form">
+            <div class="order-info">
+                
+            </div>
+            <div class="order-form">
+                <div class="os">
+                    <h5 class="title">Order Summary</h5>
+                    <table>
+                            <tr>
+                            <td>
+                                <div class="product-info">                                           
+                                <span class="product"><img src="./products/americano.jpeg" alt="ProductImg"></span>
                             <div>
-                                <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="placeOrderButton" onclick="document.location='order_confirm.html'">Place Order</button> 
-                                <!--Add onclick to submit cust order, edit type from button to submit-->
+                                <h5 class="title">Americano</h5>
+                                <p class="price-white">Price: ₱100.00</p>
+                                <a class="price-white" href="">Remove <!--remove product from order summary--> </a>                       
                             </div>
-                            <div class="control-group">
-                              <div>
-                                <button class="btn btn-primary-cancel btn-block py-3 px-5" type="button" id="CancelButton" onclick="document.location='product.html'">Cancel</button>
-                            </div>  
                             </div>
-                            
-                        </form>
+                                
+                            </td>
+                            <td>
+                                <input type="number" value="1">
+                            </td>
+                            <td>
+                                <p class="price-white">₱100.00</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr color="white">
+                    <div class="total-price">
+                        <table>
+                            <tr>
+                                <td>
+                                    <p class="price-white">Subtotal</p>
+                                </td>
+                                <td>
+                                    <p class="price-white">₱100.00</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="price-white">Shipping</p>
+                                </td>
+                                <td>
+                                    <p class="price-white">₱60.00</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="price-white" style="font-weight: bold;">Total</p>
+                                </td>
+                                <td>
+                                    <p class="price-white" style="font-weight: bold;">₱160.00</p>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
-    <!-- Contact End -->
+
+
+
 
 
     <!-- Footer Start -->

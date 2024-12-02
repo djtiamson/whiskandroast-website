@@ -10220,9 +10220,6 @@ th:last-child{
   text-align: right;
 }
 
-
-/*order summary products*/
-
 .price {
   display: flex;
   align-items: center;
@@ -10234,3 +10231,54 @@ th:last-child{
 .product{
   justify-content: space-between;
 }
+/*order summary products*/
+
+/*order confirmation*/
+.container{
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem;
+
+}
+
+.form{
+  width: 100%;
+  max-width: 1000px;
+  height: 700px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
+
+.order-info{
+  background-color: white;
+}
+
+.order-form{
+  background-color: #93512c;
+}
+
+.os{
+  margin: 25px;
+  color: white;
+}
+
+.title{
+  color: white;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 0.7rem;
+}
+
+.price-white{
+  color: white;
+}
+
