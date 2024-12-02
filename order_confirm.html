@@ -99,14 +99,21 @@
     </div>
      Header End -->
 
-    <div class="container">
+    <div class="info-box">
         <div class="form">
             <div class="order-info">
+                <div class="cust-info">
+                    <h5 class="font-weight-bold mb-2">Order Confirmation</h5>
+                    <p class="mb-0">Thank you for your purchase at Whisk and Roast! We received your order.</p><br>
+                    <h5 class="font-weight-bold mb-2">Customer Information</h5>
+                    <p class="mb-0">John Doe</p>
+                    <p class="mb-0">123 Maple St. Anytown</p>
+                    <p class="mb-0">1042 Manila City</p>
+                </div>
                 
             </div>
             <div class="order-form">
                 <div class="os">
-                    <h5 class="title">Order Summary</h5>
                     <table>
                             <tr>
                             <td>
@@ -129,7 +136,7 @@
                         </tr>
                     </table>
                     <hr color="white">
-                    <div class="total-price">
+                    <div class="os">
                         <table>
                             <tr>
                                 <td>
@@ -156,7 +163,11 @@
                                 </td>
                             </tr>
                         </table>
+                        
                     </div>
+                    <br>
+                    <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="paymenyButton" onclick="document.location='payment.html'">Proceed to Payment</button> 
+
                 </div>
                 
             </div>

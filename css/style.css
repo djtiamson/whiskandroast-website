@@ -10234,7 +10234,7 @@ th:last-child{
 /*order summary products*/
 
 /*order confirmation*/
-.container{
+.info-box{
   position: relative;
   width: 100%;
   display: flex;
@@ -10282,3 +10282,8 @@ th:last-child{
   color: white;
 }
 
+.cust-info{
+  margin: 25px;
+
+ 
+}
