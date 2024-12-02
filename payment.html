@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCash Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column align-items-center justify-content-center vh-100 bg-light">
+    <div class="card p-4 text-center">
+        <h2>GCash Payment Details</h2>
+        <p>Please transfer the amount to the following GCash account:</p>
+        <h4 class="text-primary">0999-123-4567</h4>
+        <p>Account Name: <strong>John Doe</strong></p>
+
+        <!-- QR Code Section -->
+        <div class="text-center my-3">
+            <p>Scan the QR Code below to pay:</p>
+            <img src="path-to-qr-code.png" alt="GCash QR Code" class="img-fluid" style="max-width: 200px;">
+        </div>
+
+        <!-- Button to Open GCash -->
+        <a href="gcash://payment?account=09991234567&amount=0.00" class="btn btn-success my-3" target="_blank">
+            Open GCash App
+        </a>
+
+        <!-- App Store Links -->
+        <p class="mt-3">Don't have the GCash app? Get it here:</p>
+        <div class="d-flex justify-content-center">
+            <a href="https://play.google.com/store/apps/details?id=com.globe.gcash.android" class="btn btn-primary mx-2" target="_blank">
+                Google Play (Android)
+            </a>
+            <a href="https://apps.apple.com/ph/app/gcash/id520020791" class="btn btn-primary mx-2" target="_blank">
+                App Store (iOS)
+            </a>
+        </div>
+
+        <!-- Button to Go Back -->
+        <a href="index.html" class="btn btn-secondary mt-4">Go Back</a>
+    </div>
+
+    <!-- Optional Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
