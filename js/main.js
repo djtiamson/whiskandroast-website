@@ -132,3 +132,75 @@
     });
     
 })(jQuery);
+
+// JavaScript for handling star ratings and form submission
+document.addEventListener('DOMContentLoaded', function () {
+    const stars = document.querySelectorAll('#stars i');
+    const ratingInput = document.getElementById('ratingValue');
+    const form = document.getElementById('ratingForm');
+    const reviewsList = document.getElementById('reviewsList');
+
+    // Handle star hover and click
+    stars.forEach(star => {
+        star.addEventListener('mouseover', () => {
+            const value = star.getAttribute('data-value');
+            highlightStars(value);
+        });
+
+        star.addEventListener('mouseout', () => {
+            const selectedRating = ratingInput.value;
+            highlightStars(selectedRating);
+        });
+
+        star.addEventListener('click', () => {
+            const value = star.getAttribute('data-value');
+            ratingInput.value = value;
+            highlightStars(value);
+        });
+    });
+
+    // Function to highlight the stars based on rating value
+    function highlightStars(value) {
+        stars.forEach(star => {
+            if (parseInt(star.getAttribute('data-value')) <= value) {
+                star.classList.add('checked');
+            } else {
+                star.classList.remove('checked');
+            }
+        });
+    }
+
+    // Handle form submission
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const comment = document.getElementById('comment').value;
+        const rating = ratingInput.value;
+
+        if (rating && name && comment) {
+            // Create a new review element
+            const reviewItem = document.createElement('div');
+            reviewItem.classList.add('review-item');
+            reviewItem.innerHTML = `
+                <h5>${name} - ${getStars(rating)}</h5>
+                <p>${comment}</p>
+            `;
+            reviewsList.appendChild(reviewItem);
+
+            // Clear the form after submission
+            form.reset();
+            ratingInput.value = '';
+            highlightStars(0);
+        }
+    });
+
+    // Function to return stars HTML based on rating
+    function getStars(rating) {
+        let starsHTML = '';
+        for (let i = 1; i <= 5; i++) {
+            starsHTML += i <= rating ? '<i class="fa fa-star checked"></i>' : '<i class="fa fa-star"></i>';
+        }
+        return starsHTML;
+    }
+});

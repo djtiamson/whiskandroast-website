@@ -89,11 +89,11 @@
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Service</h1>
+            <h1 class="text-white display-3 mt-lg-5">Ratings</h1>
             <div class="d-inline-flex align-items-center text-white">
                 <p class="m-0"><a class="text-white" href="">Home</a></p>
                 <i class="fa fa-circle px-3"></i>
-                <p class="m-0">Service</p>
+                <p class="m-0">Ratings</p>
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-6">
-                    <h1 class="section-title position-relative mb-5">Best Services We Provide For Our Clients</h1>
+                    <h1 class="section-title position-relative mb-5">Brewed to perfection and ready to enjoy</h1>
                 </div>
                 <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
             </div>
@@ -212,6 +212,50 @@
         </div>
     </div>
     <!-- Testimonial End -->
+
+    <!-- Ratings Section Start -->
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="section-title position-relative text-center mb-5">Leave a Review</h1>
+            <form id="ratingForm">
+                <!-- Rating stars -->
+                <div class="form-group">
+                    <label for="rating">Your Rating:</label>
+                    <div id="stars">
+                        <i class="fa fa-star" data-value="1"></i>
+                        <i class="fa fa-star" data-value="2"></i>
+                        <i class="fa fa-star" data-value="3"></i>
+                        <i class="fa fa-star" data-value="4"></i>
+                        <i class="fa fa-star" data-value="5"></i>
+                    </div>
+                    <input type="hidden" id="ratingValue" name="rating" value="">
+                </div>
+
+                <!-- Comment -->
+                <div class="form-group">
+                    <label for="comment">Your Comment:</label>
+                    <textarea id="comment" name="comment" class="form-control" rows="4" placeholder="Share your thoughts"></textarea>
+                </div>
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block">Submit Review</button>
+            </form>
+            <div id="reviewsContainer" class="mt-5">
+                <h4>Customer Reviews:</h4>
+                <div id="reviewsList"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Ratings Section End -->
+
 
 
      <!-- Footer Start -->
