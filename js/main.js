@@ -133,14 +133,12 @@
     
 })(jQuery);
 
-// JavaScript for handling star ratings and form submission
 document.addEventListener('DOMContentLoaded', function () {
     const stars = document.querySelectorAll('#stars i');
     const ratingInput = document.getElementById('ratingValue');
     const form = document.getElementById('ratingForm');
     const reviewsList = document.getElementById('reviewsList');
 
-    // Handle star hover and click
     stars.forEach(star => {
         star.addEventListener('mouseover', () => {
             const value = star.getAttribute('data-value');
@@ -159,7 +157,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Function to highlight the stars based on rating value
     function highlightStars(value) {
         stars.forEach(star => {
             if (parseInt(star.getAttribute('data-value')) <= value) {
@@ -170,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Handle form submission
     form.addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -179,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const rating = ratingInput.value;
 
         if (rating && name && comment) {
-            // Create a new review element
             const reviewItem = document.createElement('div');
             reviewItem.classList.add('review-item');
             reviewItem.innerHTML = `
@@ -188,14 +183,12 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
             reviewsList.appendChild(reviewItem);
 
-            // Clear the form after submission
             form.reset();
             ratingInput.value = '';
             highlightStars(0);
         }
     });
 
-    // Function to return stars HTML based on rating
     function getStars(rating) {
         let starsHTML = '';
         for (let i = 1; i <= 5; i++) {
