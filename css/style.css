@@ -10287,3 +10287,12 @@ th:last-child{
 
  
 }
+/*order confirmation*/
+
+/*payment form*/
+.payform{
+  font-weight: bold;
+  text-decoration: underline;
+  color: #93512c;
+  
+}
