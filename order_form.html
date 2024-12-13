@@ -99,7 +99,7 @@
     <div class="container-fluid py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-9">
-                    <div class="contact-form bg-light rounded p-5">
+                    <div class="contact-form bg-light rounded p-5" id="orderForm">
                         <div class="row">
                             </div>
                             <h5 class="font-weight-bold mb-2">Order Summary</h5>
@@ -169,41 +169,41 @@
                             </div>
 
                             
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <form method="post" action="" name="sentMessage" id="contactForm" novalidate="novalidate">
                              <div class="control-group">
                                 <label class="font-weight-bold mb-3">Contact</label>
-                                <input type="text" class="form-control p-4" id="email" placeholder="Email" required="required" data-validation-required-message="Please enter your email" />
+                                <input type="email" name="email" class="form-control p-4" id="email" placeholder="Email" required="required" data-validation-required-message="Please enter your email" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
-                                <input type="text" class="form-control p-4" id="pnum" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number" />
+                                <input type="number" name="pnum" class="form-control p-4" id="pnum" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-row">
                             <div class="col-sm-6 control-group">
-                                    <input type="text" class="form-control p-4" id="Fname" placeholder="First Name" required="required" data-validation-required-message="Please enter your first name" />
+                                    <input type="text" name="firstName" class="form-control p-4" id="firstName" placeholder="First Name" required="required" data-validation-required-message="Please enter your first name" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="col-sm-6 control-group">
-                                    <input type="text" class="form-control p-4" placeholder="Last Name" required="required" data-validation-required-message="Please enter your last name" />
+                                    <input type="text" name="lastName" class="form-control p-4" id="lastName" placeholder="Last Name" required="required" data-validation-required-message="Please enter your last name" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <input type="text" class="form-control p-4" id="address" placeholder="Address" required="required" data-validation-required-message="Please enter your address" />
+                                <input type="text" name="address" class="form-control p-4" id="address" placeholder="Address" required="required" data-validation-required-message="Please enter your address" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
-                                <input type="text" class="form-control p-4" id="city" placeholder="City" required="required" data-validation-required-message="Please enter your city" />
+                                <input type="text" name="city" class="form-control p-4" id="city" placeholder="City" required="required" data-validation-required-message="Please enter your city" />
                                 <p class="help-block text-danger"></p>
                             </div>
 
                             <div class="control-group">
-                                <textarea class="form-control p-4" rows="2" id="Notes" placeholder="Notes"></textarea>
+                                <textarea name="notes" class="form-control p-4" rows="2" id="notes" placeholder="Notes"></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div>
-                                <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="placeOrderButton" onclick="document.location='order_confirm.html'">Place Order</button> 
+                                <button class="btn btn-primary btn-block py-3 px-5" value="placeOrder" name="placeOrder" type="submit" id="placeOrderButton" onclick="document.location='order_confirm.html'">Place Order</button> 
                                 <!--Add onclick to submit cust order, edit type from button to submit-->
                             </div>
                             <div class="control-group">
