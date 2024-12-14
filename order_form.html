@@ -406,6 +406,30 @@
         const subtotalElement = document.getElementById('subtotal');
         subtotalElement.innerHTML = `Subtotal: ₱${subtotal.toFixed(2)}`; // Format to two decimal places
     }
+
+
+
+    //temp cust info
+    document.getElementById('orderForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the form from actually submitting
+
+    // Get the form values
+    const formData = {
+        email: document.getElementById('email').value,
+        pnum: document.getElementById('pnum').value,
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        deliveryAdd: document.getElementById('deliveryAdd').value,
+        city: document.getElementById('city').value,
+        notes: document.getElementById('notes').value
+    };
+
+    // Store the data in sessionStorage
+    sessionStorage.setItem('orderData', JSON.stringify(formData));
+
+    // Redirect to the confirmation page
+    window.location.href = 'order_confirm.html';
+});
 </script>
 
     

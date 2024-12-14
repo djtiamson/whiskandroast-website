@@ -28,7 +28,7 @@
     <style>
         .cart-item {
             display: flex;
-            align-items: center;
+            align-items:center
             margin-bottom: 10px;
         }
         .cart-item img {
@@ -46,7 +46,7 @@
             margin: 10 10px; 
             color: aliceblue;
             width: 170px;
-            text-indent: 92px;
+            text-indent: 107px;
         }
     </style>
 </head>
@@ -128,9 +128,13 @@
                     <p class="mb-0">Thank you for your purchase at Whisk and Roast!</p><br>
                     <p class="mb-0">We have received your information. Please check your order summary before confirming payment and order.</p><br><hr>
                     <h5 class="font-weight-bold mb-2">Customer Information</h5>
-                    <p class="mb-0">John Doe</p>
-                    <p class="mb-0">123 Maple St. Anytown</p>
-                    <p class="mb-0">1042 Manila City</p>
+    <p class="mb-2">Email: <span id="emailDisplay"></span></p>
+    <p class="mb-2">Phone Number: <span id="pnumDisplay"></span></p>
+    <p class="mb-2">First Name: <span id="firstNameDisplay"></span></p>
+    <p class="mb-2">Last Name: <span id="lastNameDisplay"></span></p>
+    <p class="mb-2">Address: <span id="deliveryAddDisplay"></span></p>
+    <p class="mb-2">City: <span id="cityDisplay"></span></p>
+    <p class="mb-2">Notes: <span id="notesDisplay"></span></p>
                 </div>
                 
             </div>
@@ -139,7 +143,7 @@
                                 <div class="product-info">                                           
                             <div>
                                 <h5 class="price-white">Order Summary</h1>
-    <div id="cart-summary">
+    <div id="cart-summary" style="max-height: 300px; overflow-y: auto; padding-right: 10px;">
         <!-- Cart items will be dynamically inserted here -->
     </div>
      
@@ -292,6 +296,24 @@
             const subtotalElement = document.getElementById('subtotal');
             subtotalElement.innerHTML = `Subtotal: ₱${subtotal.toFixed(2)}`; // Format to two decimal places
         }
+    </script>
+  
+    <script>  // from temp cust info
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the order data from sessionStorage
+            const orderData = JSON.parse(sessionStorage.getItem('orderData'));
+
+            // If data exists, populate the confirmation page
+            if (orderData) {
+                document.getElementById('emailDisplay').textContent = orderData.email;
+                document.getElementById('pnumDisplay').textContent = orderData.pnum;
+                document.getElementById('firstNameDisplay').textContent = orderData.firstName;
+                document.getElementById('lastNameDisplay').textContent = orderData.lastName;
+                document.getElementById('deliveryAddDisplay').textContent = orderData.deliveryAdd;
+                document.getElementById('cityDisplay').textContent = orderData.city;
+                document.getElementById('notesDisplay').textContent = orderData.notes;
+            }
+        });
     </script>
 </body>
 
