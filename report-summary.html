@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Report Summary</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Report Summary with Graphs" name="keywords">
+    <meta content="Report Summary with Graphs" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header Start -->
+    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+        <div class="container text-center py-5">
+            <h1 class="text-white display-3 mt-lg-5">Report Summary</h1>
+            <div class="d-inline-flex align-items-center text-white">
+                <p class="m-0"><a class="text-white" href="">Home</a></p>
+                <i class="fa fa-circle px-3"></i>
+                <p class="m-0">Report Summary</p>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Report Summary Start -->
+    <div class="container-fluid py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="bg-light rounded p-5">
+                    <h2 class="font-weight-bold mb-3">Monthly Sales Report</h2>
+                    <p>This report summarizes the monthly sales performance and includes graphs that provide insights into product sales, category distribution, and star ratings.</p>
+                    <hr>
+
+                    <!-- Graph 1: Bar Chart for Sales per Product -->
+                    <div>
+                        <h1 class="font-weight-bold">Sales per Product</h1>
+                        <hr>
+                        <canvas id="salesPerProductChart" style="height: 400px;"></canvas>
+                    </div>
+                    <br>
+
+                    <!-- Graph 2: Pie Chart for Category Distribution -->
+                    <div>
+                        <br><br><hr>
+                        <h1 class="font-weight-bold">Sales Distribution by Category</h1>
+                        <hr>
+                        <canvas id="categoryDistributionChart" style="height: 400px;"></canvas>
+                    </div>
+                    <br>
+
+                    <!-- Graph 3: Star Ratings -->
+                    <div>
+                        
+                        <h1 class="font-weight-bold">Star Ratings</h1>
+                        <hr>
+                        <canvas id="starRatingsChart" style="height: 400px;"></canvas>
+                    </div>
+                    <br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Report Summary End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Chart.js Initialization -->
+    <script>
+        // Sales per Product Bar Chart
+        var ctx1 = document.getElementById('salesPerProductChart').getContext('2d');
+        var salesPerProductChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Americano', 'Latte Love', 'Spanish Sensation', 'Mocha Madness', 'Caramel Macchiato', 'Sweet Oat Latte', 'Dirty Matcha', 'Choco-licious', 'Matcha Magic', 'Strawberry Milk'],
+                datasets: [
+                    {
+                        label: 'Sales in Units',
+                        data: [10, 15, 8, 12, 7, 5, 4, 6, 3, 2], // Adjusted to reflect new shop activity
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#d9534f', '#5bc0de', '#5cb85c', '#f0ad4e', '#0275d8', '#292b2c'],
+                        borderColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#d9534f', '#5bc0de', '#5cb85c', '#f0ad4e', '#0275d8', '#292b2c'],
+                        borderWidth: 1
+                    }
+                ]
+            }
+        });
+
+        // Category Distribution Pie Chart
+        var ctx2 = document.getElementById('categoryDistributionChart').getContext('2d');
+        var categoryDistributionChart = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['Coffee', 'Non-Coffee'],
+                datasets: [
+                    {
+                        data: [50, 25], // Reflecting lower sales activity
+                        backgroundColor: ['#4e73df', '#1cc88a']
+                    }
+                ]
+            }
+        });
+
+        // Star Ratings Bar Chart
+        var ctx3 = document.getElementById('starRatingsChart').getContext('2d');
+        var starRatingsChart = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+                datasets: [
+                    {
+                        label: 'Number of Ratings',
+                        data: [0, 0, 0, 2, 12], // Adjusted for positive ratings
+                        backgroundColor: ['#d9534f', '#f0ad4e', '#5bc0de', '#5cb85c', '#4e73df'],
+                        borderColor: ['#d9534f', '#f0ad4e', '#5bc0de', '#5cb85c', '#4e73df'],
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
