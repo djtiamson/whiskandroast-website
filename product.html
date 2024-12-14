@@ -36,14 +36,22 @@
                         <a class="text-white pl-3" href="mailto:dannahjanelle.tiamson@tup.edu.ph">Support Team</a>
                     </div>   
                 </div>
+
+                
                 <div class="col-md-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
                         <a class="text-white px-3" href="https://www.facebook.com/profile.php?id=61565706737046&mibextid=ZbWKwL">
                             <i class="fab fa-facebook-f"></i>
                         </a>
+                        
                         <a class="text-white px-3" href="https://www.instagram.com/whiskandroast?igsh=MWIwaGVxdmFtazR0bg==">
                             <i class="fab fa-instagram"></i>
                        </a>
+
+                       <!-- Cart Icon -->
+        <a id="cart-icon" class="text-white px-3" href="javascript:void(0);">
+            <i class="fas fa-shopping-cart"></i>
+        </a>
                     </div>
                 </div>
             </div>
@@ -93,6 +101,22 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Sliding Cart -->
+<div id="cart-panel" class="cart-panel">
+    <div class="cart-header">
+        <h4>Your Cart</h4>
+        <button id="close-cart" class="btn btn-sm btn-danger">&times;</button>
+    </div>
+    <div id="cart-items" class="cart-items">
+        <!-- Cart items will be dynamically added here -->
+    </div>
+    <div class="cart-footer">
+        <button class="btn btn-primary w-100">Proceed to Checkout</button>
+    </div>
+</div>
+
 
 
     <!-- Products Start -->
@@ -356,6 +380,65 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        // Elements
+        const cartPanel = document.getElementById('cart-panel');
+        const closeCart = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const orderButtons = document.querySelectorAll('.product-item .btn-secondary');
+    
+        // Add to cart functionality
+        orderButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent navigation
+                const productItem = button.closest('.product-item');
+                const name = productItem.querySelector('h5').textContent;
+                const price = productItem.querySelector('.bg-primary h4').textContent;
+                const imgSrc = productItem.querySelector('img').src;
+    
+                addToCart(name, price, imgSrc);
+                showCart();
+            });
+        });
+    
+        // Add item to cart
+        function addToCart(name, price, imgSrc) {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${imgSrc}" alt="${name}">
+                <h6>${name}</h6>
+                <span class="price">${price}</span>
+                <button class="remove-btn">&times;</button>
+            `;
+    
+            // Add event listener for remove button
+            cartItem.querySelector('.remove-btn').addEventListener('click', () => {
+                removeFromCart(cartItem);
+            });
+    
+            cartItemsContainer.appendChild(cartItem);
+        }
+    
+        // Remove item from cart
+        function removeFromCart(cartItem) {
+            cartItemsContainer.removeChild(cartItem);
+        }
+    
+        // Show cart
+        function showCart() {
+            cartPanel.classList.add('show');
+        }
+    
+        // Close cart
+        closeCart.addEventListener('click', () => {
+            cartPanel.classList.remove('show');
+        });
+    </script>
+    
+    
+
 </body>
 
 </html>

@@ -169,65 +169,50 @@
                             </div>
 
                             
-                            <form method="POST" id="orderForm">
-                                <div class="control-group">
-                                    <label class="font-weight-bold mb-3" for="email">Contact</label>
-                                    <input type="email" name="email" class="form-control p-4" id="email" placeholder="Email" required="required" />
+                        <form method="post" action="orderForm.php" name="sentMessage" id="contactForm" novalidate="novalidate">
+                             <div class="control-group">
+                                <label class="font-weight-bold mb-3">Contact</label>
+                                <input type="email" name="email" class="form-control p-4" id="email" placeholder="Email" required="required" data-validation-required-message="Please enter your email" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="number" name="pnum" class="form-control p-4" id="pnum" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-row">
+                            <div class="col-sm-6 control-group">
+                                    <input type="text" name="firstName" class="form-control p-4" id="firstName" placeholder="First Name" required="required" data-validation-required-message="Please enter your first name" />
+                                    <p class="help-block text-danger"></p>
                                 </div>
-                            
-                                <div class="control-group">
-                                    <label for="pnum">Phone Number</label>
-                                    <input type="text" name="pnum" class="form-control p-4" id="pnum" placeholder="" required="required" pattern="^\d{11}$" />
+                                <div class="col-sm-6 control-group">
+                                    <input type="text" name="lastName" class="form-control p-4" id="lastName" placeholder="Last Name" required="required" data-validation-required-message="Please enter your last name" />
+                                    <p class="help-block text-danger"></p>
                                 </div>
+                            </div>
+                            <div class="control-group">
+                                <input type="text" name="deliveryAdd" class="form-control p-4" id="deliveryAdd" placeholder="Address" required="required" data-validation-required-message="Please enter your address" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="text" name="city" class="form-control p-4" id="city" placeholder="City" required="required" data-validation-required-message="Please enter your city" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+
+                            <div class="control-group">
+                                <textarea name="notes" class="form-control p-4" rows="2" id="notes" placeholder="Notes"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block py-3 px-5" value="placeOrder" name="placeOrder" type="submit" id="placeOrderButton" onclick="document.location='order_confirm.html'">Place Order</button> 
+                                <!--Add onclick to submit cust order, edit type from button to submit-->
+                            </div>
+                            <div class="control-group">
+                              <div>
+                                <button class="btn btn-primary-cancel btn-block py-3 px-5" type="button" id="CancelButton" onclick="document.location='product.html'">Cancel</button>
+                            </div>  
+                            </div>
                             
-                                <div class="form-row">
-                                    <div class="col-sm-6 control-group">
-                                        <label for="firstName">First Name</label>
-                                        <input type="text" name="firstName" class="form-control p-4" id="firstName" placeholder="" required="required" pattern="^[A-Za-z\s]+$"/>
-                                    </div>
-                                    <div class="col-sm-6 control-group">
-                                        <label for="lastName">Last Name</label>
-                                        <input type="text" name="lastName" class="form-control p-4" id="lastName" placeholder="" required="required" pattern="^[A-Za-z\s]+$"/>
-                                    </div>
-                                </div>
-                            
-                                <div class="control-group">
-                                    <label for="deliveryAdd">Address</label>
-                                    <input type="text" name="deliveryAdd" class="form-control p-4" id="deliveryAdd" placeholder="" required="required" />
-                                </div>
-                            
-                                <div class="control-group">
-                                    <label for="city">City</label>
-                                    <input type="text" name="city" class="form-control p-4" id="city" placeholder="" required="required" />
-                                </div>
-                            
-                                <div class="control-group">
-                                    <label for="notes">Notes</label>
-                                    <textarea name="notes" class="form-control p-4" rows="2" id="notes" placeholder=""></textarea>
-                                </div>
-                            
-                                <!-- Submit Button (Place Order) -->
-                                <div>
-                                    <label></label>
-                                    <button class="btn btn-primary btn-block py-3 px-5" type="submit">Place Order</button>
-                                </div>
-                            
-                                <!-- Cancel button for navigation -->
-                                <div class="control-group">
-                                    <div>
-                                        <label></label>
-                                        <button class="btn btn-primary-cancel btn-block py-3 px-5" type="button" id="CancelButton" onclick="document.location='product.html'">Cancel</button>
-                                    </div>
-                                </div>
-                            
-                                <!-- Proceed to Payment button for navigation (instead of submitting the form) -->
-                                <div>
-                                    <label></label>
-                                    <a href="order_confirm.html" class="btn btn-primary btn-block py-3 px-5" >Proceed to Payment</a>
-                                </div>
-                            </form>     
-                            <div id="response"></div>                   
-                            
+                        </form>
                     </div>
                 </div>
             </div>
@@ -296,32 +281,6 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script>
-        document.getElementById('orderForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
-
-            const formData = new FormData(this);
-
-            fetch('orderForm.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                const responseDiv = document.getElementById('response');
-                if (data.success) {
-                    responseDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
-                } else {
-                    responseDiv.innerHTML = `<p style="color: red;">${data.message}</p>`;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('response').innerHTML = '<p style="color: red;">An error occurred while submitting the form.</p>';
-            });
-        });
-    </script>
-    
 </body>
 
 </html>

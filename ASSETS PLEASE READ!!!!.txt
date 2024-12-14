@@ -1,3 +1,0 @@
-gray black shade: #1f1d1d
-brown shade color: #93512c
-darker shade of brown: #342212
