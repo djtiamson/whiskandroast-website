@@ -37,8 +37,8 @@
             margin-right: 50px;
         }
         .cart-item h6, .cart-item .price {
-            margin: 0 10px;
-            width: 500px;
+            margin: 10 10px;
+            width: 200px;
             
         }
     </style>
@@ -139,6 +139,7 @@
     <div id="cart-summary">
         <!-- Cart items will be dynamically inserted here -->
     </div>
+    <p class="font-weight-bold mb-3" style="text-align-last: justify; margin-right: 145px;" id="subtotal">Subtotal: $0.00</p> <!-- Subtotal display -->
      
                      <form method="POST" id="orderForm">
                          <div class="control-group">
@@ -147,7 +148,7 @@
                          </div>
      
                          <div class="control-group">
-                             <label for="pnum">Phone Number</label>
+                             <label for="pnum">Phone Number (09 followed by 8 digits)</label>
                              <input type="text" name="pnum" class="form-control p-4" id="pnum" placeholder="" required="required" pattern="^\d{11}$" />
                          </div>
      
@@ -347,6 +348,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const cartContainer = document.getElementById('cart-summary');
+        const subtotalElement = document.getElementById('subtotal'); // Element to display subtotal
 
         // Retrieve the cart data from localStorage
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -354,8 +356,12 @@
         // Check if the cart is empty
         if (cart.length === 0) {
             cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+            subtotalElement.innerHTML = 'Subtotal: ₱0.00'; // Show 0 if cart is empty
             return;
         }
+
+        // Initialize subtotal variable
+        let subtotal = 0;
 
         // Display each cart item
         cart.forEach((item, index) => {
@@ -365,50 +371,41 @@
                 <img src="${item.imgSrc}" alt="${item.name}">
                 <h6>${item.name}</h6>
                 <span class="price">${item.price}</span>
-                <button class="remove-item">Remove</button>
+                
             `;
-
-            // Add functionality to remove item
-        cartItemElement.querySelector('.remove-item').addEventListener('click', () => {
-            cart.splice(index, 1); // Remove the item completely
-            updateCart(cart);
-        });
 
             cartContainer.appendChild(cartItemElement);
+
+            // Calculate subtotal (price * quantity)
+            const itemPrice = parseFloat(item.price.replace('₱', '').trim()); // Remove '₱' and parse as number
+            subtotal += itemPrice ; //* item.quantity Add to subtotal
         });
 
-        // Update the cart in localStorage and UI
-    function updateCart(updatedCart) {
-        // Save updated cart to localStorage
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+     // Update the subtotal display
+     updateSubtotal(cart);    
 
-        // Clear the cart container and re-render
-        cartContainer.innerHTML = '';
-        updatedCart.forEach((item, index) => {
-            const cartItemElement = document.createElement('div');
-            cartItemElement.classList.add('cart-item');
-            cartItemElement.innerHTML = `
-                <img src="${item.imgSrc}" alt="${item.name}">
-                <h6>${item.name}</h6>
-                <span class="price">${item.price}</span>
-                <button class="remove-item">Remove</button>
-            `;
-
-            // Add remove functionality
-            cartItemElement.querySelector('.remove-item').addEventListener('click', () => {
-                updatedCart.splice(index, 1);
-                updateCart(updatedCart);
-            });
-            cartContainer.appendChild(cartItemElement);   
-    });
-
-     // If the cart is empty, display a message
-     if (updatedCart.length === 0) {
-            cartContainer.innerHTML = '<p>Your cart is empty.</p>';
-        }
-    }
+          
 });
 
+ // Function to update the cart in localStorage
+ function updateCartInLocalStorage(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // Function to update the subtotal
+    function updateSubtotal(cart) {
+        let subtotal = 0;
+
+        // Recalculate subtotal
+        cart.forEach(item => {
+            const itemPrice = parseFloat(item.price.replace('₱', '').trim()); // Remove '$' and parse as number
+            subtotal += itemPrice ; //* item.quantity Add to subtotal
+        });
+
+        // Update the subtotal element
+        const subtotalElement = document.getElementById('subtotal');
+        subtotalElement.innerHTML = `Subtotal: ₱${subtotal.toFixed(2)}`; // Format to two decimal places
+    }
 </script>
 
     

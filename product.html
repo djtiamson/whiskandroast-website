@@ -410,12 +410,12 @@
         function addToCart(name, price, imgSrc) {
             const cartItem = {
                 name: name,
-            price: price,
+                price: price,
         imgSrc: imgSrc
             };
 
             // Retrieve the existing cart from localStorage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Add the new item
     cart.push(cartItem);
