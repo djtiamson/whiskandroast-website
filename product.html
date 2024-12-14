@@ -103,7 +103,7 @@
     </div>
 
 
-    <!-- Sliding Cart -->
+   <!-- Sliding Cart -->
 <div id="cart-panel" class="cart-panel">
     <div class="cart-header">
         <h4>Your Cart</h4>
@@ -113,10 +113,10 @@
         <!-- Cart items will be dynamically added here -->
     </div>
     <div class="cart-footer">
-        <button class="btn btn-primary w-100">Proceed to Checkout</button>
+        <!-- Button with id to handle redirect in JS -->
+        <button id="proceed-to-checkout" class="btn btn-primary w-100">Proceed to Checkout</button>
     </div>
 </div>
-
 
 
     <!-- Products Start -->
@@ -437,7 +437,11 @@
         });
     </script>
     
-    
+    <script>
+        document.getElementById('proceed-to-checkout').addEventListener('click', function() {
+            window.location.href = 'order_form.html'; // Redirect to the order form page
+        });
+    </script>
 
 </body>
 

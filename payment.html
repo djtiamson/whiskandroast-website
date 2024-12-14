@@ -10,19 +10,31 @@
     <div class="card p-4 text-center">
         <h2>GCash Payment Details</h2>
         <p>Please transfer the amount to the following GCash account:</p>
-        <h4 class="text-primary">0999-123-4567</h4>
-        <p>Account Name: <strong>John Doe</strong></p>
+        <h4 class="text-primary">+63 9** *** 5124</h4>
+        <p>Account Name: <strong>Cheska Ellein Sayat</strong></p>
 
         <!-- QR Code Section -->
         <div class="text-center my-3">
             <p>Scan the QR Code below to pay:</p>
-            <img src="path-to-qr-code.png" alt="GCash QR Code" class="img-fluid" style="max-width: 200px;">
+            <img src="./img/gcash-qrcode.jpg" alt="GCash QR Code" class="img-fluid" style="max-width: 200px;">
         </div>
 
-        <!-- Button to Open GCash -->
-        <a href="gcash://payment?account=09991234567&amount=0.00" class="btn btn-success my-3" target="_blank">
-            Open GCash App
-        </a>
+        <hr><p>Please make sure to take a screenshot or save the GCash Payment Reciept!</p><hr>
+
+        <div class="my-4">
+            <h4>Upload Your Payment Receipt</h4>
+            <form id="upload-receipt-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="file" class="form-control-file" id="receipt-image" name="receipt-image" accept="image/*" required>
+                </div>
+            </form>
+            <p id="upload-status" class="mt-3"></p>
+        </div>
+        
+        <!-- Confirm Payment Button (Initially Disabled) -->
+        <a href="order_done.html" class="btn btn-success my-3" id="confirm-payment" disabled>
+            Confirm Payment
+        </a><hr>
 
         <!-- App Store Links -->
         <p class="mt-3">Don't have the GCash app? Get it here:</p>
@@ -41,6 +53,45 @@
 
     <!-- Optional Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Get the necessary elements
+        const receiptInput = document.getElementById('receipt-image');
+        const confirmPaymentButton = document.getElementById('confirm-payment');
+        const uploadStatus = document.getElementById('upload-status');
+    
+        // Disable the "Confirm Payment" button initially
+        confirmPaymentButton.disabled = true;
+    
+        // Check if a file is uploaded
+        receiptInput.addEventListener('change', function() {
+            if (receiptInput.files.length > 0) {
+                // Show a message that the file was uploaded
+                uploadStatus.textContent = 'Receipt uploaded successfully! You can now confirm your payment.';
+                uploadStatus.style.color = 'green';
+    
+                // Enable the Confirm Payment button
+                confirmPaymentButton.disabled = false;
+            } else {
+                // If no file is selected, show an error message
+                uploadStatus.textContent = 'Please select an image to upload.';
+                uploadStatus.style.color = 'red';
+    
+                // Keep the Confirm Payment button disabled
+                confirmPaymentButton.disabled = true;
+            }
+        });
+    
+        // Prevent navigation to order_done.html if no image is uploaded
+        confirmPaymentButton.addEventListener('click', function(event) {
+            if (receiptInput.files.length === 0) {
+                event.preventDefault();  // Prevent navigation
+                alert('You must upload the payment receipt before confirming the payment!');
+            }
+        });
+    </script>
+
+
 </body>
 </html>
 
