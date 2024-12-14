@@ -32,12 +32,14 @@
             margin-bottom: 10px;
         }
         .cart-item img {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
+            width: 100px;
+            height: 100px;
+            margin-right: 50px;
         }
         .cart-item h6, .cart-item .price {
             margin: 0 10px;
+            width: 500px;
+            
         }
     </style>
 
@@ -347,7 +349,7 @@
         const cartContainer = document.getElementById('cart-summary');
 
         // Retrieve the cart data from localStorage
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         // Check if the cart is empty
         if (cart.length === 0) {
@@ -356,17 +358,56 @@
         }
 
         // Display each cart item
-        cart.forEach(item => {
+        cart.forEach((item, index) => {
             const cartItemElement = document.createElement('div');
             cartItemElement.classList.add('cart-item');
             cartItemElement.innerHTML = `
                 <img src="${item.imgSrc}" alt="${item.name}">
                 <h6>${item.name}</h6>
                 <span class="price">${item.price}</span>
+                <button class="remove-item">Remove</button>
             `;
+
+            // Add functionality to remove item
+        cartItemElement.querySelector('.remove-item').addEventListener('click', () => {
+            cart.splice(index, 1); // Remove the item completely
+            updateCart(cart);
+        });
+
             cartContainer.appendChild(cartItemElement);
         });
+
+        // Update the cart in localStorage and UI
+    function updateCart(updatedCart) {
+        // Save updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+        // Clear the cart container and re-render
+        cartContainer.innerHTML = '';
+        updatedCart.forEach((item, index) => {
+            const cartItemElement = document.createElement('div');
+            cartItemElement.classList.add('cart-item');
+            cartItemElement.innerHTML = `
+                <img src="${item.imgSrc}" alt="${item.name}">
+                <h6>${item.name}</h6>
+                <span class="price">${item.price}</span>
+                <button class="remove-item">Remove</button>
+            `;
+
+            // Add remove functionality
+            cartItemElement.querySelector('.remove-item').addEventListener('click', () => {
+                updatedCart.splice(index, 1);
+                updateCart(updatedCart);
+            });
+            cartContainer.appendChild(cartItemElement);   
     });
+
+     // If the cart is empty, display a message
+     if (updatedCart.length === 0) {
+            cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+        }
+    }
+});
 
 </script>
 

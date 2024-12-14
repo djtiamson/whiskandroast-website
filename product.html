@@ -24,6 +24,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -408,7 +410,7 @@
         function addToCart(name, price, imgSrc) {
             const cartItem = {
                 name: name,
-        price: price,
+            price: price,
         imgSrc: imgSrc
             };
 
@@ -442,6 +444,12 @@
         // Remove item from cart
         function removeFromCart(cartItemElement, name) {
             cartItemsContainer.removeChild(cartItemElement);
+            // Retrieve the existing cart from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+         // Filter out the item to remove it from the cart
+         cart = cart.filter(item => item.name !== name);
+         // Save the updated cart back to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
         }
     
         // Show cart
@@ -459,9 +467,6 @@
     localStorage.setItem('cart', JSON.stringify(cart));
         });
 
-    </script>
-
-<script>
     document.getElementById('proceed-to-checkout').addEventListener('click', function() {
         window.location.href = 'order_form.html'; // Redirect to the order form page
     });
