@@ -10349,6 +10349,10 @@ textarea {
 }
 
 /* Item Details */
+.cart-header h4 {
+  color: white;
+}
+
 .cart-item-details {
   flex-grow: 1;
   display: flex;

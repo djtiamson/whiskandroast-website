@@ -273,7 +273,6 @@
             });
         });
     </script>
-
 <script>
     const orderForm = document.getElementById('orderForm');
     const proceedOrderButton = document.getElementById('proceed-order');
@@ -281,32 +280,45 @@
 
     // Disable Proceed to Order button initially
     proceedOrderButton.setAttribute('disabled', 'disabled');
+    proceedOrderButton.classList.add('btn-secondary');
 
-    // Listen for form submission
-    orderForm.addEventListener('submit', function(event) {
+    // Listen for Submit Info button click
+    orderForm.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent default form submission
 
-        // Simulate form submission (here you can add an AJAX request or form validation)
-        const formData = new FormData(orderForm);
+        // Validate form fields
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('pnum').value.trim();
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const address = document.getElementById('deliveryAdd').value.trim();
+        const city = document.getElementById('city').value.trim();
 
-        // Simulating successful submission
+        if (!email || !phone || !firstName || !lastName || !address || !city) {
+            alert('Please fill out all required fields before submitting.');
+            return;
+        }
+
+        // Simulate successful submission
         setTimeout(() => {
             alert('Information submitted successfully!');
-            // Enable the Proceed to Order button
+
+            // Enable Proceed to Order button
             proceedOrderButton.removeAttribute('disabled');
             proceedOrderButton.classList.remove('btn-secondary');
             proceedOrderButton.classList.add('btn-primary');
         }, 500);
     });
 
-    // Prevent navigation to order_confirm.html if Proceed button is clicked before enabling
-    proceedOrderButton.addEventListener('click', function(event) {
+    // Prevent navigation if Proceed button is disabled
+    proceedOrderButton.addEventListener('click', function (event) {
         if (proceedOrderButton.hasAttribute('disabled')) {
             event.preventDefault();
             alert('Please submit your information before proceeding.');
         }
     });
 </script>
+
     
 </body>
 
