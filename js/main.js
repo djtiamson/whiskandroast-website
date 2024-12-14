@@ -4,7 +4,7 @@
     // Smooth scrolling on the navbar links
     $(".navbar-nav a").on('click', function (event) {
         if (this.hash !== "") {
-            event.preventDefault();
+          //  event.preventDefault();
             
             $('html, body').animate({
                 scrollTop: $(this.hash).offset().top - 45
@@ -133,67 +133,7 @@
     
 })(jQuery);
 
-document.addEventListener('DOMContentLoaded', function () {
-    const stars = document.querySelectorAll('#stars i');
-    const ratingInput = document.getElementById('ratingValue');
-    const form = document.getElementById('ratingForm');
-    const reviewsList = document.getElementById('reviewsList');
 
-    stars.forEach(star => {
-        star.addEventListener('mouseover', () => {
-            const value = star.getAttribute('data-value');
-            highlightStars(value);
-        });
 
-        star.addEventListener('mouseout', () => {
-            const selectedRating = ratingInput.value;
-            highlightStars(selectedRating);
-        });
 
-        star.addEventListener('click', () => {
-            const value = star.getAttribute('data-value');
-            ratingInput.value = value;
-            highlightStars(value);
-        });
-    });
 
-    function highlightStars(value) {
-        stars.forEach(star => {
-            if (parseInt(star.getAttribute('data-value')) <= value) {
-                star.classList.add('checked');
-            } else {
-                star.classList.remove('checked');
-            }
-        });
-    }
-
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const name = document.getElementById('name').value;
-        const comment = document.getElementById('comment').value;
-        const rating = ratingInput.value;
-
-        if (rating && name && comment) {
-            const reviewItem = document.createElement('div');
-            reviewItem.classList.add('review-item');
-            reviewItem.innerHTML = `
-                <h5>${name} - ${getStars(rating)}</h5>
-                <p>${comment}</p>
-            `;
-            reviewsList.appendChild(reviewItem);
-
-            form.reset();
-            ratingInput.value = '';
-            highlightStars(0);
-        }
-    });
-
-    function getStars(rating) {
-        let starsHTML = '';
-        for (let i = 1; i <= 5; i++) {
-            starsHTML += i <= rating ? '<i class="fa fa-star checked"></i>' : '<i class="fa fa-star"></i>';
-        }
-        return starsHTML;
-    }
-});
