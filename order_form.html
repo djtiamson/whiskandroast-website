@@ -28,35 +28,44 @@
 
 <body>
     <!-- Topbar Start -->
-    <div class="container-fluid bg-primary py-3 d-none d-md-block">
-        <div class="container">
-            <div class="row">
+<div class="container-fluid bg-primary py-3 d-none d-md-block">
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <!-- Left Section: Support Team -->
+            <div class="col-md-6">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-white pl-3" href="mailto:dannahjanelle.tiamson@tup.edu.ph">Support Team</a>
-                </div>   
+                    <a class="text-white" href="mailto:dannahjanelle.tiamson@tup.edu.ph">
+                        <i class="fas fa-envelope mr-2"></i> Support Team
+                    </a>
                 </div>
-                <div class="col-md-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-white px-3" href="https://www.facebook.com/profile.php?id=61565706737046&mibextid=ZbWKwL">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-white px-3" href="https://www.instagram.com/whiskandroast?igsh=MWIwaGVxdmFtazR0bg==">
-                            <i class="fab fa-instagram"></i>
-                       </a>
-                    </div>
-                </div>                
+            </div>
+
+            <!-- Right Section: Social Media Icons -->
+            <div class="col-md-6 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-white px-3" href="https://www.facebook.com/profile.php?id=61565706737046&mibextid=ZbWKwL">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-white px-3" href="https://www.instagram.com/whiskandroast?igsh=MWIwaGVxdmFtazR0bg==">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
+</div>
+<!-- Topbar End -->
 
+<!-- Font Awesome CDN (Ensure This is Included in Your Page) -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
                 <a href="index.html" class="navbar-brand d-block d-lg-none">
-                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">Whisk</span>Roast</h1>                </a>
+                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">Whisk</span>Roast</h1>                
+                </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -81,7 +90,7 @@
     <!-- Navbar End -->
 
 
-    <!-- Header Start 
+    <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
             <h1 class="text-white display-3 mt-lg-5">Contact</h1>
@@ -92,148 +101,89 @@
             </div>
         </div>
     </div>
-     Header End -->
+     <!--Header End -->
 
 
-    <!-- Contact Start -->
-    <div class="container-fluid py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-9">
-                    <div class="contact-form bg-light rounded p-5" id="orderForm">
-                        <div class="row">
-                            </div>
-                            <h5 class="font-weight-bold mb-2">Order Summary</h5>
-                            <!--SAMPLE-One product line in order-->
-                            <div class="small-cont os-page">
-                                <table>
-                                    <tr>
-                                        <th>
-                                            Product
-                                        </th>
-                                        <th>
-                                            Quantity
-                                        </th>
-                                        <th>
-                                            Subtotal
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="product-info">                                           
-                                            <span class="product"><img src="./products/americano.jpeg" alt="ProductImg"></span>
-                                        <div>
-                                            <h5 class="font-weight-bold mb-2">Americano</h5>
-                                            <p class="mb-0">Price: ₱100.00</p>
-                                            <a href="">Remove <!--remove product from order summary--> </a>                       
-                                        </div>
-                                        </div>
-                                            
-                                        </td>
-                                        <td>
-                                            <input type="number" value="1">
-                                        </td>
-                                        <td>
-                                            ₱100.00
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <div class="total-price">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                Subtotal
-                                            </td>
-                                            <td>
-                                                ₱100.00
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Shipping
-                                            </td>
-                                            <td>
-                                                ₱60.00
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Total
-                                            </td>
-                                            <td>
-                                                ₱160.00
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-
-                            
-                            <form method="POST" id="orderForm">
-                                <div class="control-group">
-                                    <label class="font-weight-bold mb-3" for="email">Contact</label>
-                                    <input type="email" name="email" class="form-control p-4" id="email" placeholder="Email" required="required" />
-                                </div>
-                            
-                                <div class="control-group">
-                                    <label for="pnum">Phone Number</label>
-                                    <input type="text" name="pnum" class="form-control p-4" id="pnum" placeholder="" required="required" pattern="^\d{11}$" />
-                                </div>
-                            
-                                <div class="form-row">
-                                    <div class="col-sm-6 control-group">
-                                        <label for="firstName">First Name</label>
-                                        <input type="text" name="firstName" class="form-control p-4" id="firstName" placeholder="" required="required" pattern="^[A-Za-z\s]+$"/>
-                                    </div>
-                                    <div class="col-sm-6 control-group">
-                                        <label for="lastName">Last Name</label>
-                                        <input type="text" name="lastName" class="form-control p-4" id="lastName" placeholder="" required="required" pattern="^[A-Za-z\s]+$"/>
-                                    </div>
-                                </div>
-                            
-                                <div class="control-group">
-                                    <label for="deliveryAdd">Address</label>
-                                    <input type="text" name="deliveryAdd" class="form-control p-4" id="deliveryAdd" placeholder="" required="required" />
-                                </div>
-                            
-                                <div class="control-group">
-                                    <label for="city">City</label>
-                                    <input type="text" name="city" class="form-control p-4" id="city" placeholder="" required="required" />
-                                </div>
-                            
-                                <div class="control-group">
-                                    <label for="notes">Notes</label>
-                                    <textarea name="notes" class="form-control p-4" rows="2" id="notes" placeholder=""></textarea>
-                                </div>
-                            
-                                <!-- Submit Button (Place Order) -->
-                                <div>
-                                    <label></label>
-                                    <button class="btn btn-primary btn-block py-3 px-5" type="submit">Place Order</button>
-                                </div>
-                            
-                                <!-- Cancel button for navigation -->
-                                <div class="control-group">
-                                    <div>
-                                        <label></label>
-                                        <button class="btn btn-primary-cancel btn-block py-3 px-5" type="button" id="CancelButton" onclick="document.location='product.html'">Cancel</button>
-                                    </div>
-                                </div>
-                            
-                                <!-- Proceed to Payment button for navigation (instead of submitting the form) -->
-                                <div>
-                                    <label></label>
-                                    <a href="order_confirm.html" class="btn btn-primary btn-block py-3 px-5" >Proceed to Payment</a>
-                                </div>
-                            </form>     
-                            <div id="response"></div>                   
-                            
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Contact End -->
+     <!-- Contact Start -->
+     <div class="container-fluid py-5">
+         <div class="row justify-content-center">
+             <div class="col-lg-9">
+                 <div class="contact-form bg-light rounded p-5" id="orderForm">
+                     <div class="row"></div>
+                     <h2 class="font-weight-bold mb-2">Customer Information</h2>
+                     <hr>
+                     <p>Please submit your information first before proceeding to your Order Summary and Payment.</p>
+                     <hr><br>
+     
+                     <form method="POST" id="orderForm">
+                         <div class="control-group">
+                             <label class="font-weight-bold mb-3" for="email">Contact</label>
+                             <input type="email" name="email" class="form-control p-4" id="email" placeholder="Email" required="required" />
+                         </div>
+     
+                         <div class="control-group">
+                             <label for="pnum">Phone Number</label>
+                             <input type="text" name="pnum" class="form-control p-4" id="pnum" placeholder="" required="required" pattern="^\d{11}$" />
+                         </div>
+     
+                         <div class="form-row">
+                             <div class="col-sm-6 control-group">
+                                 <label for="firstName">First Name</label>
+                                 <input type="text" name="firstName" class="form-control p-4" id="firstName" placeholder="" required="required" pattern="^[A-Za-z\s]+$" />
+                             </div>
+                             <div class="col-sm-6 control-group">
+                                 <label for="lastName">Last Name</label>
+                                 <input type="text" name="lastName" class="form-control p-4" id="lastName" placeholder="" required="required" pattern="^[A-Za-z\s]+$" />
+                             </div>
+                         </div>
+     
+                         <div class="control-group">
+                             <label for="deliveryAdd">Address</label>
+                             <input type="text" name="deliveryAdd" class="form-control p-4" id="deliveryAdd" placeholder="" required="required" />
+                         </div>
+     
+                         <div class="control-group">
+                             <label for="city">City</label>
+                             <input type="text" name="city" class="form-control p-4" id="city" placeholder="" required="required" />
+                         </div>
+     
+                         <div class="control-group">
+                             <label for="notes">Notes</label>
+                             <textarea name="notes" class="form-control p-4" rows="2" id="notes" placeholder=""></textarea>
+                         </div>
+     
+                         <!-- Submit Button (Place Order) -->
+                         <div>
+                             <label></label>
+                             <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="submit-info">
+                                 Submit Information
+                             </button>
+                         </div>
+     
+                         <!-- Proceed to Payment button (Initially Disabled) -->
+                         <div>
+                             <label></label>
+                             <a href="order_confirm.html" class="btn btn-primary btn-block py-3 px-5" id="proceed-order" disabled>
+                                 Proceed to Order
+                             </a>
+                         </div>
+     
+                         <!-- Cancel button -->
+                         <div class="control-group">
+                             <div>
+                                 <label></label>
+                                 <button class="btn btn-primary-cancel btn-block py-3 px-5" type="button" id="CancelButton" onclick="document.location='product.html'">
+                                     Cancel
+                                 </button>
+                             </div>
+                         </div>
+                     </form>
+                     <div id="response"></div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <!-- Contact End -->
 
 
     <!-- Footer Start -->
@@ -321,6 +271,40 @@
             });
         });
     </script>
+
+<script>
+    const orderForm = document.getElementById('orderForm');
+    const proceedOrderButton = document.getElementById('proceed-order');
+    const submitInfoButton = document.getElementById('submit-info');
+
+    // Disable Proceed to Order button initially
+    proceedOrderButton.setAttribute('disabled', 'disabled');
+
+    // Listen for form submission
+    orderForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Simulate form submission (here you can add an AJAX request or form validation)
+        const formData = new FormData(orderForm);
+
+        // Simulating successful submission
+        setTimeout(() => {
+            alert('Information submitted successfully!');
+            // Enable the Proceed to Order button
+            proceedOrderButton.removeAttribute('disabled');
+            proceedOrderButton.classList.remove('btn-secondary');
+            proceedOrderButton.classList.add('btn-primary');
+        }, 500);
+    });
+
+    // Prevent navigation to order_confirm.html if Proceed button is clicked before enabling
+    proceedOrderButton.addEventListener('click', function(event) {
+        if (proceedOrderButton.hasAttribute('disabled')) {
+            event.preventDefault();
+            alert('Please submit your information before proceeding.');
+        }
+    });
+</script>
     
 </body>
 
