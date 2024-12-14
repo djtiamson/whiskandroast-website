@@ -24,6 +24,23 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .cart-item h6, .cart-item .price {
+            margin: 0 10px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -115,6 +132,11 @@
                      <p>Before proceeding to your Order Summary and Payment, please ensure you submit your information. This step is necessary for us to accurately process your order. </p>
                      <p>Rest assured, all customer information is handled with the utmost care and is securely stored in compliance with data privacy standards.</p>
                      <hr><br>
+
+                     <h1>Order Summary</h1>
+    <div id="cart-summary">
+        <!-- Cart items will be dynamically inserted here -->
+    </div>
      
                      <form method="POST" id="orderForm">
                          <div class="control-group">
@@ -317,6 +339,35 @@
             alert('Please submit your information before proceeding.');
         }
     });
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartContainer = document.getElementById('cart-summary');
+
+        // Retrieve the cart data from localStorage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Check if the cart is empty
+        if (cart.length === 0) {
+            cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+            return;
+        }
+
+        // Display each cart item
+        cart.forEach(item => {
+            const cartItemElement = document.createElement('div');
+            cartItemElement.classList.add('cart-item');
+            cartItemElement.innerHTML = `
+                <img src="${item.imgSrc}" alt="${item.name}">
+                <h6>${item.name}</h6>
+                <span class="price">${item.price}</span>
+            `;
+            cartContainer.appendChild(cartItemElement);
+        });
+    });
+
 </script>
 
     

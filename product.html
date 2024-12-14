@@ -382,7 +382,9 @@
     <script src="js/main.js"></script>
 
     <script>
-        // Elements
+       
+            // Elements 
+            
         const cartPanel = document.getElementById('cart-panel');
         const closeCart = document.getElementById('close-cart');
         const cartItemsContainer = document.getElementById('cart-items');
@@ -404,26 +406,42 @@
     
         // Add item to cart
         function addToCart(name, price, imgSrc) {
-            const cartItem = document.createElement('div');
-            cartItem.classList.add('cart-item');
-            cartItem.innerHTML = `
-                <img src="${imgSrc}" alt="${name}">
-                <h6>${name}</h6>
-                <span class="price">${price}</span>
-                <button class="remove-btn">&times;</button>
-            `;
-    
+            const cartItem = {
+                name: name,
+        price: price,
+        imgSrc: imgSrc
+            };
+
+            // Retrieve the existing cart from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Add the new item
+    cart.push(cartItem);
+
+    // Save the updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Update the cart panel
+    const cartItemElement = document.createElement('div');
+    cartItemElement.classList.add('cart-item');
+    cartItemElement.innerHTML = `
+        <img src="${imgSrc}" alt="${name}">
+        <h6>${name}</h6>
+        <span class="price">${price}</span>
+        <button class="remove-btn">&times;</button>
+    `;
+
             // Add event listener for remove button
-            cartItem.querySelector('.remove-btn').addEventListener('click', () => {
-                removeFromCart(cartItem);
+            cartItemElement.querySelector('.remove-btn').addEventListener('click', () => {
+                removeFromCart(cartItemElement, name);
             });
     
-            cartItemsContainer.appendChild(cartItem);
+            cartItemsContainer.appendChild(cartItemElement);
         }
     
         // Remove item from cart
-        function removeFromCart(cartItem) {
-            cartItemsContainer.removeChild(cartItem);
+        function removeFromCart(cartItemElement, name) {
+            cartItemsContainer.removeChild(cartItemElement);
         }
     
         // Show cart
@@ -434,13 +452,44 @@
         // Close cart
         closeCart.addEventListener('click', () => {
             cartPanel.classList.remove('show');
+
+            // Update the cart in localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.name !== name);
+    localStorage.setItem('cart', JSON.stringify(cart));
         });
+
     </script>
 
 <script>
     document.getElementById('proceed-to-checkout').addEventListener('click', function() {
         window.location.href = 'order_form.html'; // Redirect to the order form page
     });
+
+    // Load cart from localStorage when the page loads (to restore cart panel state)
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Populate the cart panel with stored items
+    cart.forEach(item => {
+        const cartItemElement = document.createElement('div');
+        cartItemElement.classList.add('cart-item');
+        cartItemElement.innerHTML = `
+            <img src="${item.imgSrc}" alt="${item.name}">
+            <h6>${item.name}</h6>
+            <span class="price">${item.price}</span>
+            <button class="remove-btn">&times;</button>
+        `;
+
+      // Add remove functionality to the button
+      cartItemElement.querySelector('.remove-btn').addEventListener('click', () => {
+            removeFromCart(cartItemElement, item.name);
+        });
+        
+        // Append to cart container
+        cartItemsContainer.appendChild(cartItemElement);
+    });
+});
 </script>
 
 </body>
