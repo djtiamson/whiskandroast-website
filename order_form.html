@@ -93,26 +93,27 @@
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Contact</h1>
+            <h1 class="text-white display-3 mt-lg-5">Customer Information</h1>
             <div class="d-inline-flex align-items-center text-white">
                 <p class="m-0"><a class="text-white" href="">Home</a></p>
                 <i class="fa fa-circle px-3"></i>
-                <p class="m-0">Contact</p>
+                <p class="m-0">Customer Information</p>
             </div>
         </div>
     </div>
      <!--Header End -->
 
 
-     <!-- Contact Start -->
+     <!-- Customer Information Start -->
      <div class="container-fluid py-5">
          <div class="row justify-content-center">
              <div class="col-lg-9">
                  <div class="contact-form bg-light rounded p-5" id="orderForm">
                      <div class="row"></div>
-                     <h2 class="font-weight-bold mb-2">Customer Information</h2>
+                     <h1 class="font-weight-bold mb-2">Customer Information</h1>
                      <hr>
-                     <p>Please submit your information first before proceeding to your Order Summary and Payment.</p>
+                     <p>Before proceeding to your Order Summary and Payment, please ensure you submit your information. This step is necessary for us to accurately process your order. </p>
+                     <p>Rest assured, all customer information is handled with the utmost care and is securely stored in compliance with data privacy standards.</p>
                      <hr><br>
      
                      <form method="POST" id="orderForm">
@@ -183,7 +184,7 @@
              </div>
          </div>
      </div>
-     <!-- Contact End -->
+     <!-- Customer Information End -->
 
 
     <!-- Footer Start -->
@@ -246,6 +247,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
     <script>
         document.getElementById('orderForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
