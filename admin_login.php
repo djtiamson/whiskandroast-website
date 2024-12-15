@@ -19,11 +19,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: admin_dashboard.php"); // Redirect to admin dashboard
         exit;
     } else {
-        $error_message = "Invalid username or password.";
-        echo $error_message;
+        $error_message = "INVALID CREDENTIALS. Only admins are allowed in this section.";
     }
 
     $stmt->close();
     $conn->close();
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f8f9fa;
+        }
+        .error-message {
+            color: red;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <?php if (!empty($error_message)): ?>
+        <div class="error-message">
+            <?php echo htmlspecialchars($error_message); ?>
+        </div>
+    <?php endif; ?>
+    <a href="login.html">Back to Log In Page</a>
+</body>
+</html>
