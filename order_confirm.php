@@ -33,7 +33,7 @@ $sql = "INSERT INTO custinfo (email, pnum, firstName, lastName, deliveryAdd, cit
 $stmt = $conn->prepare($sql);
 
 if ($stmt) {
-    $stmt->bind_param("sssssss", $email, $pnum, $firstName, $lastName, $deliveryAdd, $city, $notes);
+    $stmt->bind_param("sssssssss", $email, $pnum, $firstName, $lastName, $deliveryAdd, $city, $notes, $cart_summary, $subtotal );
 
     if ($stmt->execute()) {
         echo json_encode(["success" => true, "message" => "Order placed successfully!"]);
