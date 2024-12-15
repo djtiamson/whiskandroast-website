@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows == 1) {
         $_SESSION['admin'] = $username; // Set session for admin
-        header("Location: admin_dashboard.php"); // Redirect to admin dashboard
+        header("Location: welcome.html"); // Redirect to admin dashboard
         exit;
     } else {
         $error_message = "INVALID CREDENTIALS. Only admins are allowed in this section.";
@@ -35,10 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login Error</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f8f9fa;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            Font-family: "Poppins", sans-serif;
+            color: #7f5539;
         }
         .error-message {
             color: red;
