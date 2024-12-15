@@ -135,6 +135,20 @@
     <p class="mb-2">Address: <span id="deliveryAddDisplay"></span></p>
     <p class="mb-2">City: <span id="cityDisplay"></span></p>
     <p class="mb-2">Notes: <span id="notesDisplay"></span></p>
+
+    <form id="orderForm" action="order_confirm.php" method="POST">
+        <input type="hidden" name="email" id="emailInput">
+        <input type="hidden" name="pnum" id="pnumInput">
+        <input type="hidden" name="firstName" id="firstNameInput">
+        <input type="hidden" name="lastName" id="lastNameInput">
+        <input type="hidden" name="deliveryAdd" id="deliveryAddInput">
+        <input type="hidden" name="city" id="cityInput">
+        <input type="hidden" name="notes" id="notesInput">
+        <input type="hidden" name="cartSummary" id="cartSummaryInput">
+        <input type="hidden" name="subtotal" id="subtotalInput">
+    
+        <button type="submit" class="btn btn-primary btn-block py-3 px-5" onclick="document.location='payment.html'">Confirm and Save</button>
+    </form>
                 </div>
                 
             </div>
@@ -163,7 +177,7 @@
 
                     <br>
 
-                    <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="paymenyButton" onclick="document.location='payment.html'">Confirm Order</button> 
+                    <!--<button class="btn btn-primary btn-block py-3 px-5" type="submit" id="paymenyButton" onclick="document.location='payment.html'">Confirm Order</button> -->
                 </div>
                 
             </div>
@@ -314,6 +328,26 @@
                 document.getElementById('notesDisplay').textContent = orderData.notes;
             }
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+    const orderData = JSON.parse(sessionStorage.getItem('orderData'));
+    const cartData = JSON.parse(localStorage.getItem('cart'));
+    const subtotal = document.getElementById('subtotal').textContent.replace('Subtotal: ₱', '').trim();
+
+    if (orderData) {
+        document.getElementById('emailInput').value = orderData.email;
+        document.getElementById('pnumInput').value = orderData.pnum;
+        document.getElementById('firstNameInput').value = orderData.firstName;
+        document.getElementById('lastNameInput').value = orderData.lastName;
+        document.getElementById('deliveryAddInput').value = orderData.deliveryAdd;
+        document.getElementById('cityInput').value = orderData.city;
+        document.getElementById('notesInput').value = orderData.notes;
+    }
+
+    // Serialize cart and subtotal
+    document.getElementById('cartSummaryInput').value = JSON.stringify(cartData);
+    document.getElementById('subtotalInput').value = subtotal;
+});
     </script>
 </body>
 
