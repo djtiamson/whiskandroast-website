@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: welcome.html"); // Redirect to admin dashboard
         exit;
     } else {
-        $error_message = "INVALID CREDENTIALS. Only admins are allowed in this section.";
+        $error_message = "INVALID CREDENTIALS! Check username and password.";
     }
 
     $stmt->close();
@@ -34,24 +34,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Error</title>
     <style>
-        body {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            Font-family: "Poppins", sans-serif;
-            color: #7f5539;
-        }
-        .error-message {
-            color: red;
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+    body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color:rgb(239, 228, 214); /* Coffee-themed background */
+        font-family: "Poppins", sans-serif;
+        color: #7f5539; /* Coffee-themed text color */
+    }
+    .error-message {
+        color:rgb(204, 19, 19);
+        font-weight: 700;
+        font-size: 26.5px;
+        padding: 15px;
+        border-radius: 5px;
+        text-align: center;
+        margin-bottom: 20px;
+        width: 80%;
+        max-width: 400px;
+    }
+    .back-button {
+        color: #fff;
+        background-color: #7f5539; /* Coffee button color */
+        font-size: 16px;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        text-align: center;
+    }
+    .back-button:hover {
+        background-color: #6b4226; /* Darker shade for hover effect */
+    }
     </style>
 </head>
 <body>
@@ -60,6 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php echo htmlspecialchars($error_message); ?>
         </div>
     <?php endif; ?>
-    <a href="login.html">Back to Log In Page</a>
+    <button class="back-button" onclick="window.location.href='login.html'">Back to Log In Page</button>
 </body>
 </html>

@@ -35,6 +35,12 @@ if (isset($_POST['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WHISK AND ROAST ORDER SUMMARY</title>
     <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #f8f4ec;
+            font-family: 'Poppins', sans-serif;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -59,6 +65,7 @@ if (isset($_POST['logout'])) {
             background-color: #4b2e24;
             color: white;
             font-size: 16px;
+            border-radius: 30px;
             border: none;
             cursor: pointer;
             text-decoration: none;
@@ -83,6 +90,8 @@ if (isset($_POST['logout'])) {
                 <th>City</th>
                 <th>Notes</th>
                 <th>Order Date</th>
+                <th>Product</th>
+                <th>Quantity</th>
             </tr>
         </thead>
         <tbody>
@@ -99,6 +108,7 @@ if (isset($_POST['logout'])) {
                         <td>" . htmlspecialchars($row['city']) . "</td>
                         <td>" . htmlspecialchars($row['notes']) . "</td>
                         <td>" . htmlspecialchars($row['created_at']) . "</td>
+                        <td>" . htmlspecialchars($row['']) . " </td>
                     </tr>";
                 }
             } else {
@@ -119,6 +129,3 @@ if (isset($_POST['logout'])) {
     ?>
 </body>
 </html>
-
-
-
