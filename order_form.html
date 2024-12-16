@@ -134,8 +134,8 @@
     <div id="cart-summary">
         <!-- Cart items will be dynamically inserted here -->
     </div>
-    <p class="font-weight-bold mb-3" style="text-align-last: justify; margin-right: 145px;" id="subtotal">Subtotal: $0.00</p> <!-- Subtotal display -->
-    <hr>
+    <p class="font-weight-bold mb-5" style="text-align-last: justify; margin-right: 145px;" id="subtotal">Subtotal: $0.00</p> <!-- Subtotal display -->
+    <br>
     <h1 class="font-weight-bold mb-2">Customer Information</h1>
  <hr><br>
     <p>Before proceeding to your Order Summary and Payment, please ensure you submit your information. This step is necessary for us to accurately process your order. </p>
@@ -143,34 +143,35 @@
     <hr>     
                      <form method="POST" id="orderForm">
                          <div class="control-group">
-                             <label for="email">Email</label>
-                             <input type="email" name="email" class="form-control p-4" id="email" placeholder="" required="required" />
+                             <label for="email"></label>
+                             <input type="email" name="email" class="form-control p-4" id="email" placeholder="Email" required="required" />
                          </div>
      
                          <div class="control-group">
-                             <label for="pnum">Phone Number (09 followed by 9 digits)</label>
-                             <input type="text" name="pnum" class="form-control p-4" id="pnum" placeholder="" required="required" pattern="^\d{11}$" />
+                             <label for="pnum"></label>
+                             <input type="text" name="pnum" class="form-control p-4" id="pnum" placeholder="Phone Number (09 followed by 9 digits)" required="required" pattern="^\d{11}$" />
                          </div>
      
                          <div class="form-row">
                              <div class="col-sm-6 control-group">
-                                 <label for="firstName">First Name</label>
-                                 <input type="text" name="firstName" class="form-control p-4" id="firstName" placeholder="" required="required" pattern="^[A-Za-z\s]+$" />
+                                 <label for="firstName"></label>
+                                 <input type="text" name="firstName" class="form-control p-4" id="firstName" placeholder="First Name" required="required" pattern="^[A-Za-z\s]+$" />
                              </div>
                              <div class="col-sm-6 control-group">
-                                 <label for="lastName">Last Name</label>
-                                 <input type="text" name="lastName" class="form-control p-4" id="lastName" placeholder="" required="required" pattern="^[A-Za-z\s]+$" />
+                                 <label for="lastName"></label>
+                                 <input type="text" name="lastName" class="form-control p-4" id="lastName" placeholder="Last Name" required="required" pattern="^[A-Za-z\s]+$" />
                              </div>
                          </div>
      
                          <div class="control-group">
-                             <label for="deliveryAdd">Address</label>
-                             <input type="text" name="deliveryAdd" class="form-control p-4" id="deliveryAdd" placeholder="" required="required" />
+                             <label for="deliveryAdd"></label>
+                             <input type="text" name="deliveryAdd" class="form-control p-4" id="deliveryAdd" placeholder="Address" required="required" />
                          </div>
      
                          <div class="control-group">
-                            <label for="city">Choose a city:</label>
+                            <label for="city"></label>
                                         <select id="city" class="form-control" name="city">
+                                        <option value="" disabled selected>-- Choose a city --</option>
                                         <option value="Caloocan">Caloocan</option>
                                         <option value="Las Piñas">Las Piñas</option>
                                         <option value="Mandaluyong">Mandaluyong</option>
