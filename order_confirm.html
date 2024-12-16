@@ -148,9 +148,12 @@
         <input type="hidden" name="cartSummary" id="cartSummaryInput">
         <input type="hidden" name="subtotal" id="subtotalInput">
     
-        <br><br><br><br><hr>
-        <button type="button" class="btn btn-primary btn-block py-3 px-5" onclick="document.location='payment.html'">Confirm Order</button>
+        <hr>
+        <button type="submit" class="btn btn-primary btn-block py-3 ">Submit Order</button>
+        <button id="proceedToPaymentBtn" type="button" class="btn btn-primary btn-block py-3 px-5" disabled onclick="document.location='payment.html'">Proceed to Payment</button>
+
     </form>
+    <div id="response"></div>
                 </div>
                 
             </div>
@@ -176,6 +179,7 @@
 
                         
                     </div>
+                    
                 </div>
                 
             </div>
@@ -347,6 +351,119 @@
     document.getElementById('subtotalInput').value = subtotal;
 });
     </script>
+
+<script>
+    async function submitOrder(event) {
+        event.preventDefault();
+
+        const formData = new FormData(document.getElementById('orderForm'));
+
+        const data = {
+            email: formData.get('email'),
+            pnum: formData.get('pnum'),
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            deliveryAdd: formData.get('deliveryAdd'),
+            city: formData.get('city'),
+            notes: formData.get('notes'),
+            cartSummary: formData.get('cartSummary'),
+            subtotal: formData.get('subtotal')
+        };
+
+        try {
+            const response = await fetch('order_confirm.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams(data)
+            });
+
+            const result = await response.json();
+            alert(result.message);
+        } catch (error) {
+            alert("An error occurred: " + error.message);
+        }
+    }
+</script>
+<script>
+    document.getElementById('orderForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const formData = new FormData(this);
+
+        fetch('order_confirm.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const responseDiv = document.getElementById('response');
+            if (data.success) {
+                responseDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
+            } else {
+                responseDiv.innerHTML = `<p style="color: red;">${data.message}</p>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('response').innerHTML = '<p style="color: red;">An error occurred while submitting the form.</p>';
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const proceedToPaymentBtn = document.getElementById('proceedToPaymentBtn');
+        const submitOrderBtn = document.querySelector('#orderForm button[type="submit"]');
+
+        // Initially disable the Proceed to Payment button
+        proceedToPaymentBtn.disabled = true;
+
+        // Add event listener for the Submit Order button
+        submitOrderBtn.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const form = document.getElementById('orderForm');
+            const formData = new FormData(form);
+
+            // Validate if required fields are filled
+            const isFormValid = [
+                formData.get('email'),
+                formData.get('pnum'),
+                formData.get('firstName'),
+                formData.get('lastName'),
+                formData.get('deliveryAdd'),
+                formData.get('city')
+            ].every(field => field && field.trim() !== "");
+
+            if (!isFormValid) {
+                alert('Please complete all required fields before proceeding.');
+                return;
+            }
+
+            // Simulate successful form submission (replace this with your actual form submission logic)
+            fetch('order_confirm.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    proceedToPaymentBtn.disabled = false; // Enable the Proceed to Payment button
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while submitting the form.');
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>

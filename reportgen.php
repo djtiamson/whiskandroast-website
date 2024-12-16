@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch data for graph (e.g., count of orders by city)
-$query = "SELECT city, COUNT(*) AS orders FROM custinfo GROUP BY city";
+$query = "SELECT city, COUNT(*) AS orders FROM orders GROUP BY city";
 $result = $conn->query($query);
 
 $data = [];

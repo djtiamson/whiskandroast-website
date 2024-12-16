@@ -129,26 +129,26 @@
              <div class="col-lg-9">
                  <div class="contact-form bg-light rounded p-5" id="orderForm">
                      <div class="row"></div>
-                     <h1 class="font-weight-bold mb-2">Customer Information</h1>
-                     <hr>
-                     <p>Before proceeding to your Order Summary and Payment, please ensure you submit your information. This step is necessary for us to accurately process your order. </p>
-                     <p>Rest assured, all customer information is handled with the utmost care and is securely stored in compliance with data privacy standards.</p>
-                     <hr><br>
 
                      <h1>Order Summary</h1>
     <div id="cart-summary">
         <!-- Cart items will be dynamically inserted here -->
     </div>
     <p class="font-weight-bold mb-3" style="text-align-last: justify; margin-right: 145px;" id="subtotal">Subtotal: $0.00</p> <!-- Subtotal display -->
-     
+    <hr>
+    <h1 class="font-weight-bold mb-2">Customer Information</h1>
+ <hr><br>
+    <p>Before proceeding to your Order Summary and Payment, please ensure you submit your information. This step is necessary for us to accurately process your order. </p>
+    <p>Rest assured, all customer information is handled with the utmost care and is securely stored in compliance with data privacy standards.</p>
+    <hr>     
                      <form method="POST" id="orderForm">
                          <div class="control-group">
-                             <label class="font-weight-bold mb-3" for="email">Contact</label>
-                             <input type="email" name="email" class="form-control p-4" id="email" placeholder="Email" required="required" />
+                             <label for="email">Email</label>
+                             <input type="email" name="email" class="form-control p-4" id="email" placeholder="" required="required" />
                          </div>
      
                          <div class="control-group">
-                             <label for="pnum">Phone Number (09 followed by 8 digits)</label>
+                             <label for="pnum">Phone Number (09 followed by 9 digits)</label>
                              <input type="text" name="pnum" class="form-control p-4" id="pnum" placeholder="" required="required" pattern="^\d{11}$" />
                          </div>
      
@@ -195,22 +195,20 @@
                          <div>
                              <label></label>
                              <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="submit-info">
-                                 Submit Information
+                                 Confirm Order
                              </button>
                          </div>
      
                          <!-- Proceed to Payment button (Initially Disabled) -->
                          <div>
-                             <label></label>
-                             <a href="order_confirm.html" class="btn btn-primary btn-block py-3 px-5" id="proceed-order" disabled>
-                                 Proceed to Order
+                             <a href="order_confirm.html"  id="proceed-order" disabled>
+                               
                              </a>
                          </div>
      
                          <!-- Cancel button -->
                          <div class="control-group">
                              <div>
-                                 <label></label>
                                  <button class="btn btn-primary-cancel btn-block py-3 px-5" type="button" id="CancelButton" onclick="document.location='product.html'">
                                      Cancel
                                  </button>
@@ -444,6 +442,8 @@
     window.location.href = 'order_confirm.html';
 });
 </script>
+
+
 
     
 </body>

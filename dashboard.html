@@ -24,6 +24,28 @@
             color: #7f5539;
             text-align: center;
         }
+
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #6d4c41;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-back:hover {
+            background-color: #4e3629;
+        }
+        .btn-back:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -46,7 +68,7 @@
         <tbody>
         </tbody>
     </table>
-
-    <p><a href="login.html">Logout</a></p>
+    <a href="welcome.html" class="btn-back">Back to Dashboard</a>
+    <p><a href="reportgen.html">Report Generation</a></p>
 </body>
 </html>

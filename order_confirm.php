@@ -23,20 +23,20 @@ $lastName = $_POST['lastName'] ?? '';
 $deliveryAdd = $_POST['deliveryAdd'] ?? '';
 $city = $_POST['city'] ?? '';
 $notes = $_POST['notes'] ?? '';
-$cart_summary = $_POST['cartSummary']; // JSON string of cart items
-$subtotal = $_POST['subtotal'];
+$cart_summary = $_POST['cartSummary'] ?? ''; // JSON string of cart items
+$subtotal = $_POST['subtotal'] ?? '';
 
 // Prepare an SQL statement to insert the data into the table
-$sql = "INSERT INTO custinfo (email, pnum, firstName, lastName, deliveryAdd, city, notes, cart_summary, subtotal) 
+$sql = "INSERT INTO orders (email, pnum, firstName, lastName, deliveryAdd, city, notes, cart_summary, subtotal) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
 
 if ($stmt) {
-    $stmt->bind_param("sssssssss", $email, $pnum, $firstName, $lastName, $deliveryAdd, $city, $notes, $cart_summary, $subtotal );
+    $stmt->bind_param("sssssssss", $email, $pnum, $firstName, $lastName, $deliveryAdd, $city, $notes, $cart_summary, $subtotal);
 
     if ($stmt->execute()) {
-        echo json_encode(["success" => true, "message" => "Order placed successfully!"]);
+        echo json_encode(["success" => true, "message" => "Order submitted successfully, you can now proceed to payment"]);
     } else {
         echo json_encode(["success" => false, "message" => "Error: " . $stmt->error]);
     }
@@ -49,12 +49,3 @@ if ($stmt) {
 // Close the database connection
 $conn->close();
 ?>
-
-
-
-
-
-
-
-
-

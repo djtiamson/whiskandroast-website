@@ -11,13 +11,16 @@ $dbname = "whisk_and_roast";      // Replace with your database name
 // Create connection
 $conn = new mysqli($host, $username, $password, $dbname);
 
+$sql = "SELECT name FROM cart_summary WHERE user_id = ?";
+//$sql ="SELECT JSON_EXTRACT(cart_summary,'$name')AS name FROM orders";
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Query to fetch order data
-$query = "SELECT id, email, pnum, firstName, lastName, deliveryAdd, city, notes, created_at FROM custinfo"; // Adjust table name and field names if necessary
+$query = "SELECT id, email, pnum, firstName, lastName, deliveryAdd, city, notes, cart_summary, subtotal, created_at FROM orders"; // Adjust table name and field names if necessary
 $result = $conn->query($query);
 
 // Logout functionality (if session exists, destroy it)
@@ -73,9 +76,27 @@ if (isset($_POST['logout'])) {
         .logout-btn:hover {
             background-color: #4b2e24;
         }
+        .btn-back {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #6d4c41;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-back:hover {
+            background-color: #4e3629;
+        }
     </style>
 </head>
 <body>
+<a href="welcome.html" class="btn-back">Back to Dashboard</a>
     <h1>WHISK AND ROAST ORDER SUMMARY</h1>
 
     <table>
@@ -89,9 +110,9 @@ if (isset($_POST['logout'])) {
                 <th>Delivery Address</th>
                 <th>City</th>
                 <th>Notes</th>
+                <th>Cost</th>
+                <th>Cart Summary</th>
                 <th>Order Date</th>
-                <th>Product</th>
-                <th>Quantity</th>
             </tr>
         </thead>
         <tbody>
@@ -107,22 +128,19 @@ if (isset($_POST['logout'])) {
                         <td>" . htmlspecialchars($row['deliveryAdd']) . "</td>
                         <td>" . htmlspecialchars($row['city']) . "</td>
                         <td>" . htmlspecialchars($row['notes']) . "</td>
-                        <td>" . htmlspecialchars($row['created_at']) . "</td>
-                        <td>" . htmlspecialchars($row['']) . " </td>
+                        <td>" . htmlspecialchars($row['subtotal']) . "</td>
+                        <td>" . htmlspecialchars(string: $row['cart_summary']) . " </td>
+                        <td>" . htmlspecialchars($row['created_at']) . " </td>
                     </tr>";
                 }
             } else {
-                echo "<tr><td colspan='9'>No orders found</td></tr>";
+                echo "<tr><td colspan='11'>No orders found</td></tr>";
             }
             ?>
         </tbody>
     </table>
 
     <!-- Logout Button -->
-    <form method="POST">
-        <button type="submit" name="logout" class="logout-btn">Logout</button>
-    </form>
-
     <?php
     // Close the database connection
     $conn->close();
