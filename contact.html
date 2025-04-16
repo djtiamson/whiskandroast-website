@@ -24,37 +24,73 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        /* Sticky topbar and navbar */
+  .sticky-topbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1040; /* Higher than navbar's z-index */
+  }
+
+  .sticky-navbar {
+      position: fixed;
+      top: 48px; /* Height of topbar */
+      width: 100%;
+      z-index: 1030;
+  }
+
+  /* Prevent content from being hidden behind fixed bars */
+  .sticky-offset {
+      padding-top: 130px; /* Adjust this based on actual height of topbar + navbar */
+  }
+
+  @media (max-width: 767.98px) {
+      .sticky-navbar {
+          top: 56px; /* Slightly more space for mobile toggler */
+      }
+
+      .sticky-offset {
+          padding-top: 140px; /* Extra space for collapsed nav on mobile */
+      }
+  }
+  </style>
+
 </head>
 
 <body>
     <!-- Topbar Start -->
-    <div class="container-fluid bg-primary py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-white pl-3" href="mailto:dannahjanelle.tiamson@tup.edu.ph">Support Team</a>
-                        <span class="text-white mx-2">&nbsp;&nbsp;&nbsp;|</span>
-                    </div>   
-                </div>
-                <div class="col-md-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-white px-3" href="https://www.facebook.com/profile.php?id=61565706737046&mibextid=ZbWKwL">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-white px-3" href="https://www.instagram.com/whiskandroast?igsh=MWIwaGVxdmFtazR0bg==">
-                            <i class="fab fa-instagram"></i>
-                       </a>
-                    </div>
-                </div>
+<div class="container-fluid bg-primary py-3 sticky-topbar">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center flex-wrap flex-md-nowrap">
+            <!-- Left side -->
+            <div class="d-flex align-items-center text-white mb-2 mb-md-0">
+                <a class="text-white pr-2" href="mailto:dannahjanelle.tiamson@tup.edu.ph">Support Team</a>
+                <span class="text-white mx-2">|</span>
+            </div>
+
+            <!-- Right side -->
+            <div class="d-flex align-items-center">
+                <a class="text-white px-2"
+                   href="https://www.facebook.com/profile.php?id=61565706737046&mibextid=ZbWKwL">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a class="text-white px-2"
+                   href="https://www.instagram.com/whiskandroast?igsh=MWIwaGVxdmFtazR0bg==">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a id="cart-icon" class="text-white px-2" href="javascript:void(0);">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
-
+</div>
+<!-- Topbar End -->
 
     <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
+    <div class="container-fluid nav-bar p-0 sticky-navbar">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
                 <a href="index.html" class="navbar-brand d-block d-lg-none">
@@ -84,17 +120,14 @@
     <!-- Navbar End -->
 
     <!-- Header Start -->
-    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
-        <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Contact</h1>
-            <div class="d-inline-flex align-items-center text-white">
-                <p class="m-0"><a class="text-white" href="">Home</a></p>
-                <i class="fa fa-circle px-3"></i>
-                <p class="m-0">Contact</p>
+    <div class="sticky-offset">
+        <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+            <div class="container text-center py-5">
+                <h1 class="text-white display-3 mt-lg-5">Contact</h1>
+            </div>
             </div>
         </div>
-    </div>
-    <!-- Header End -->
+        <!-- Header End -->
 
 
     <!-- Contact Start -->
