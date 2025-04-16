@@ -32,45 +32,43 @@
             border-collapse: collapse;
             margin-bottom: 20px;
         }
-
+    
         .cart-table th,
         .cart-table td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
-
+    
         .cart-table th {
             background-color: #f2f2f2;
         }
-
+    
         .cart-item-image {
             width: 50px;
             height: 50px;
             object-fit: cover;
             border-radius: 5px;
         }
-
+    
         .cart-total {
             text-align: right;
             font-size: 1.2em;
             margin-bottom: 10px;
         }
-
+    
         /* Style for dark brown text with no background */
         .dark-brown-text {
             color: #8B4513;
-            /* Dark Brown */
             background-color: transparent;
-            /* No background */
         }
-
+    
         /* Styles for quantity adjustment buttons */
         .quantity-buttons {
             display: flex;
             align-items: center;
         }
-
+    
         .quantity-button {
             background-color: #ddd;
             border: none;
@@ -78,7 +76,7 @@
             margin: 0 5px;
             cursor: pointer;
         }
-
+    
         /* Cart Panel Styles */
         #cart-panel {
             display: none;
@@ -94,25 +92,69 @@
             display: flex;
             flex-direction: column;
         }
-
+    
         .cart-header {
             display: flex;
             align-items: center;
             margin-bottom: 3px;
             color: #8B4513;
         }
-
+    
         .cart-items {
             flex-grow: 1;
             overflow-y: auto;
         }
-
+    
         .cart-footer {
             text-align: right;
             margin-top: auto;
-            /* Stick the total and proceed at the bottom */
+        }
+    
+        /* MOBILE STYLES */
+        @media (max-width: 767.98px) {
+            #cart-panel {
+                width: 100%;
+                padding: 15px;
+            }
+    
+            .cart-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+    
+            .cart-table thead {
+                display: none;
+            }
+    
+            .cart-table tbody tr {
+                display: block;
+                margin-bottom: 15px;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 10px;
+            }
+    
+            .cart-table td {
+                display: block;
+                width: 100%;
+                text-align: left;
+                padding: 5px 0;
+            }
+    
+            .quantity-buttons {
+                justify-content: flex-start;
+            }
+    
+            .cart-footer {
+                text-align: center;
+            }
+    
+            .cart-total {
+                font-size: 1.1em;
+                text-align: center;
+            }
         }
     </style>
+    
 </head>
 
 <body>
@@ -223,6 +265,8 @@
             <button id="proceed-to-checkout" class="btn btn-primary w-100">Proceed to Checkout</button>
         </div>
     </div>
+
+
     <!-- Products Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
