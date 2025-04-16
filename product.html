@@ -25,7 +25,94 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
+    <style>
+        /* Styles for the cart layout */
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
 
+        .cart-table th,
+        .cart-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-table th {
+            background-color: #f2f2f2;
+        }
+
+        .cart-item-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* Style for dark brown text with no background */
+        .dark-brown-text {
+            color: #8B4513;
+            /* Dark Brown */
+            background-color: transparent;
+            /* No background */
+        }
+
+        /* Styles for quantity adjustment buttons */
+        .quantity-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-button {
+            background-color: #ddd;
+            border: none;
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        /* Cart Panel Styles */
+        #cart-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 25%;
+            height: 100vh;
+            background: #F5F5DC;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+            color: #8B4513;
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .cart-footer {
+            text-align: right;
+            margin-top: auto;
+            /* Stick the total and proceed at the bottom */
+        }
+    </style>
 </head>
 
 <body>
@@ -38,31 +125,31 @@
                         <a class="text-white pl-3" href="mailto:dannahjanelle.tiamson@tup.edu.ph">Support Team</a>
                         <span class="text-white mx-2">&nbsp;&nbsp;&nbsp;|</span>
                         <a class="text-white pl-3" href="login.html">Admin</a>
-                    </div>   
+                    </div>
                 </div>
 
-                
                 <div class="col-md-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white px-3" href="https://www.facebook.com/profile.php?id=61565706737046&mibextid=ZbWKwL">
+                        <a class="text-white px-3"
+                            href="https://www.facebook.com/profile.php?id=61565706737046&mibextid=ZbWKwL">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        
-                        <a class="text-white px-3" href="https://www.instagram.com/whiskandroast?igsh=MWIwaGVxdmFtazR0bg==">
-                            <i class="fab fa-instagram"></i>
-                       </a>
 
-                       <!-- Cart Icon -->
-        <a id="cart-icon" class="text-white px-3" href="javascript:void(0);">
-            <i class="fas fa-shopping-cart"></i>
-        </a>
+                        <a class="text-white px-3"
+                            href="https://www.instagram.com/whiskandroast?igsh=MWIwaGVxdmFtazR0bg==">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <!-- Cart Icon -->
+                        <a id="cart-icon" class="text-white px-3" href="javascript:void(0);">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Topbar End -->
-
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
@@ -81,7 +168,8 @@
                         <a href="product.html" class="nav-item nav-link">Products</a>
                     </div>
                     <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
-                        <img src="./home/whiskandroastlogo-nobg.png" alt="WhiskadnRoast Logo" style="max-height: 4rem; max-width: 100%;">
+                        <img src="./home/whiskandroastlogo-nobg.png" alt="WhiskadnRoast Logo"
+                            style="max-height: 4rem; max-width: 100%;">
                     </a>
                     <div class="navbar-nav mr-auto py-0">
                         <a href="gallery.html" class="nav-item nav-link">Gallery</a>
@@ -105,34 +193,46 @@
             </div>
         </div>
     </div>
+    <!-- Header End -->
 
-
-   <!-- Sliding Cart -->
-<div id="cart-panel" class="cart-panel">
-    <div class="cart-header">
-        <h4>Your Cart</h4>
-        <button id="close-cart" class="btn btn-sm btn-danger">&times;</button>
+    <!-- Sliding Cart -->
+    <div id="cart-panel" class="cart-panel">
+        <div class="cart-header">
+            <h4 class="dark-brown-text">Your Cart</h4>
+            <button id="close-cart" class="btn btn-sm btn-danger">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="dark-brown-text">Product</th>
+                        <th class="dark-brown-text">Quantity</th>
+                        <th class="dark-brown-text">Price</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body">
+                    <!-- Cart items will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total dark-brown-text">
+                Total: <span id="cart-total-price">₱0</span>
+            </div>
+            <!-- Button with id to handle redirect in JS -->
+            <button id="proceed-to-checkout" class="btn btn-primary w-100">Proceed to Checkout</button>
+        </div>
     </div>
-    <div id="cart-items" class="cart-items">
-        <!-- Cart items will be dynamically added here -->
-    </div>
-    <div class="cart-footer">
-        <!-- Button with id to handle redirect in JS -->
-        <button id="proceed-to-checkout" class="btn btn-primary w-100">Proceed to Checkout</button>
-    </div>
-</div>
-
-
     <!-- Products Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
             <!-- Introductory Text -->
             <div class="row justify-content-center">
-                <div class="row justify-content-center">
-                    <div class="col-12 text-center mb-5">
-                        <h2 class="small-text">Get ready to taste the flavors of Whisk and Roast! From bold brews to sweet delights, each bottle offers a delicious experience.</h2>
-                        <h2 class="small-text">Try our bottled favorites:</h2>
-                    </div>
+                <div class="col-12 text-center mb-5">
+                    <h2 class="small-text">Get ready to taste the flavors of Whisk and Roast! From bold brews to sweet
+                        delights, each bottle offers a delicious experience.</h2>
+                    <h2 class="small-text">Try our bottled favorites:</h2>
                 </div>
             </div>
 
@@ -140,7 +240,7 @@
             <hr>
             <hr>
             <div class="col-12 text-center mb-3">
-                  <a href="#products-coffee" class="btn btn-primary py-3 px-5 me-2">Coffee</a>
+                <a href="#products-coffee" class="btn btn-primary py-3 px-5 me-2">Coffee</a>
                 <a href="#products-noncoffee" class="btn btn-primary py-3 px-5">Non-Coffee</a>
             </div>
             <hr>
@@ -148,226 +248,272 @@
 
             <!-- Product Row - Coffee -->
             <section id="products-coffee">
-             <div class="row justify-content-center">
-                <div class="col-lg-12 text-center mb-5">
-                    <h2 class="coffee-section-title display-2">Coffee</h2>
-                </div>
-            </div>
-
-            <section id="coffee">
-            <div class="row">
-
-                <div class="col-lg-3 col-md-6 mb-4 pb-2">
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                            <h4 class="font-weight-bold text-white mb-0">₱100</h4>
-                        </div>
-                        <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                            <img class="rounded-circle w-100 h-100" src="products/americano.jpeg" style="object-fit: cover;">
-                        </div>
-                        <h5 class="font-weight-bold mb-4">Americano</h5>
-                        <p>Strong, smooth, and packed with the power to fuel your day!</p>
-                        <a href="order_form.html" target="_blank" class="btn btn-sm btn-secondary">Add to Cart</a>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 text-center mb-5">
+                        <h2 class="coffee-section-title display-2">Coffee</h2>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 mb-4 pb-2">
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                            <h4 class="font-weight-bold text-white mb-0">₱120</h4>
+                <section id="coffee">
+                    <div class="row justify-content-center">
+                        <!-- Americano -->
+                        <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                            <div
+                                class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                    <h4 class="font-weight-bold text-white mb-0">₱100</h4>
+                                </div>
+                                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                                    style="width: 150px; height: 150px;">
+                                    <img class="rounded-circle w-100 h-100" src="products/americano.jpeg"
+                                        style="object-fit: cover;">
+                                </div>
+                                <h5 class="font-weight-bold mb-4">Americano</h5>
+                                <p>Strong, smooth, and packed with the power to fuel your day!</p>
+                                <button class="btn btn-sm btn-secondary add-to-cart" data-product="Americano"
+                                    data-price="100" data-image="products/americano.jpeg">Add to Cart</button>
+                            </div>
                         </div>
-                        <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                            <img class="rounded-circle w-100 h-100" src="products/latte-love.jpeg" style="object-fit: cover;">
+
+                        <!-- Latte Love -->
+                        <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                            <div
+                                class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                    <h4 class="font-weight-bold text-white mb-0">₱120</h4>
+                                </div>
+                                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                                    style="width: 150px; height: 150px;">
+                                    <img class="rounded-circle w-100 h-100" src="products/latte-love.jpeg"
+                                        style="object-fit: cover;">
+                                </div>
+                                <h5 class="font-weight-bold mb-4">Latte Love</h5>
+                                <p>Silky smooth with the perfect balance of espresso and cream.</p>
+                                <button class="btn btn-sm btn-secondary add-to-cart" data-product="Latte Love"
+                                    data-price="120" data-image="products/latte-love.jpeg">Add to Cart</button>
+                            </div>
                         </div>
-                        <h5 class="font-weight-bold mb-4">Latte Love</h5>
-                        <p>Silky smooth with the perfect balance of espresso and cream.</p>
-                        <a href="order_form.html" target="_blank" class="btn btn-sm btn-secondary">Add to Cart</a>
+
+                        <!-- Spanish Sensation -->
+                        <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                            <div
+                                class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                    <h4 class="font-weight-bold text-white mb-0">₱150</h4>
+                                </div>
+                                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                                    style="width: 150px; height: 150px;">
+                                    <img class="rounded-circle w-100 h-100" src="products/spanish-sensation.jpeg"
+                                        style="object-fit: cover;">
+                                </div>
+                                <h5 class="font-weight-bold mb-4">Spanish Sensation</h5>
+                                <p>A sweet, creamy fusion of espresso and condensed milk.</p>
+                                <button class="btn btn-sm btn-secondary add-to-cart" data-product="Spanish Sensation"
+                                    data-price="150" data-image="products/spanish-sensation.jpeg">Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Mocha Madness -->
+                        <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                            <div
+                                class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                    <h4 class="font-weight-bold text-white mb-0">₱150</h4>
+                                </div>
+                                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                                    style="width: 150px; height: 150px;">
+                                    <img class="rounded-circle w-100 h-100" src="products/mocha-madness.jpeg"
+                                        style="object-fit: cover;">
+                                </div>
+                                <h5 class="font-weight-bold mb-4">Mocha Madness</h5>
+                                <p>Coffee + chocolate = the perfect duo for your sweet cravings.</p>
+                                <button class="btn btn-sm btn-secondary add-to-cart" data-product="Mocha Madness"
+                                    data-price="150" data-image="products/mocha-madness.jpeg">Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Caramel Macchiato -->
+                        <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                            <div
+                                class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                    <h4 class="font-weight-bold text-white mb-0">₱150</h4>
+                                </div>
+                                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                                    style="width: 150px; height: 150px;">
+                                    <img class="rounded-circle w-100 h-100" src="products/caramel-macchiato.jpeg"
+                                        style="object-fit: cover;">
+                                </div>
+                                <h5 class="font-weight-bold mb-4">Caramel Macchiato</h5>
+                                <p>Layers of espresso and caramel sweetness, simply irresistible.</p>
+                                <button class="btn btn-sm btn-secondary add-to-cart" data-product="Caramel Macchiato"
+                                    data-price="150" data-image="products/caramel-macchiato.jpeg">Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Sweet Oat Latte -->
+                        <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                            <div
+                                class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                    <h4 class="font-weight-bold text-white mb-0">₱150</h4>
+                                </div>
+                                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                                    style="width: 150px; height: 150px;">
+                                    <img class="rounded-circle w-100 h-100" src="products/sweet-oat-latte.jpeg"
+                                        style="object-fit: cover;">
+                                </div>
+                                <h5 class="font-weight-bold mb-4">Sweet Oat Latte</h5>
+                                <p>Earthy oat milk with a hint of honey to keep things light and lovely.</p>
+                                <button class="btn btn-sm btn-secondary add-to-cart" data-product="Sweet Oat Latte"
+                                    data-price="150" data-image="products/sweet-oat-latte.jpeg">Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Dirty Matcha -->
+                        <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                            <div
+                                class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                    <h4 class="font-weight-bold text-white mb-0">₱150</h4>
+                                </div>
+                                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                                    style="width: 150px; height: 150px;">
+                                    <img class="rounded-circle w-100 h-100" src="products/dirty-matcha.jpg"
+                                        style="object-fit: cover;">
+                                </div>
+                                <h5 class="font-weight-bold mb-4">Dirty Matcha</h5>
+                                <p>A perfect balance of bold espresso and refreshing matcha for an extra kick.</p>
+                                <button class="btn btn-sm btn-secondary add-to-cart" data-product="Dirty Matcha"
+                                    data-price="150" data-image="products/dirty-matcha.jpg">Add to Cart</button>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
+                </section>
+                <hr>
+                <hr>
 
-                <div class="col-lg-3 col-md-6 mb-4 pb-2">
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                            <h4 class="font-weight-bold text-white mb-0">₱150</h4>
+                <!-- Product Row - Non-Coffee -->
+                <section id="products-noncoffee">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12 text-center mb-5">
+                                <h2 class="coffee-section-title display-2">Non-Coffee</h2>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                                <div
+                                    class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                    <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                        <h4 class="font-weight-bold text-white mb-0">₱130</h4>
+                                    </div>
+                                    <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                                        style="width: 150px; height: 150px;">
+                                        <img class="rounded-circle w-100 h-100" src="products/choco-licious.jpg"
+                                            style="object-fit: cover;">
+                                    </div>
+                                    <h5 class="font-weight-bold mb-4">Choco-licious</h5>
+                                    <p>Chocolate lovers, this one’s for you! rich and unforgettable.</p>
+                                    <button class="btn btn-sm btn-secondary add-to-cart"
+                                        data-product="Choco-licious" data-price="130"
+                                        data-image="products/choco-licious.jpg">Add to Cart</button>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                                <div
+                                    class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                    <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                        <h4 class="font-weight-bold text-white mb-0">₱150</h4>
+                                    </div>
+                                    <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                                        style="width: 150px; height: 150px;">
+                                        <img class="rounded-circle w-100 h-100" src="products/matcha-magic.jpg"
+                                            style="object-fit: cover;">
+                                    </div>
+                                    <h5 class="font-weight-bold mb-4">Matcha Magic</h5>
+                                    <p>A refreshingly creamy matcha milk to energize and brighten your day.</p>
+                                    <button class="btn btn-sm btn-secondary add-to-cart" data-product="Matcha Magic"
+                                        data-price="150" data-image="products/matcha-magic.jpg">Add to Cart</button>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                                <div
+                                    class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                                    <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                                        <h4 class="font-weight-bold text-white mb-0">₱150</h4>
+                                    </div>
+                                    <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3"
+                                        style="width: 150px; height: 150px;">
+                                        <img class="rounded-circle w-100 h-100" src="products/strawberry-milk.jpg"
+                                            style="object-fit: cover;">
+                                    </div>
+                                    <h5 class="font-weight-bold mb-4">Strawberry Milk</h5>
+                                    <p>A refreshingly fruity and creamy twist to brighten your day.</p>
+                                    <button class="btn btn-sm btn-secondary add-to-cart"
+                                        data-product="Strawberry Milk" data-price="150"
+                                        data-image="products/strawberry-milk.jpg">Add to Cart</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                            <img class="rounded-circle w-100 h-100" src="products/spanish-sensation.jpeg" style="object-fit: cover;">
-                        </div>
-                        <h5 class="font-weight-bold mb-4">Spanish Sensation</h5>
-                        <p>A sweet, creamy fusion of espresso and condensed milk.</p>
-                        <a href="order_form.html" target="_blank" class="btn btn-sm btn-secondary">Add to Cart</a>
+                        <!-- End of Product Row -->
                     </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6 mb-4 pb-2">
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                            <h4 class="font-weight-bold text-white mb-0">₱150</h4>
-                        </div>
-                        <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                            <img class="rounded-circle w-100 h-100" src="products/mocha-madness.jpeg" style="object-fit: cover;">
-                        </div>
-                        <h5 class="font-weight-bold mb-4">Mocha Madness</h5>
-                        <p>Coffee + chocolate = the perfect duo for your sweet cravings.</p>
-                        <a href="order_form.html" target="_blank" class="btn btn-sm btn-secondary">Add to Cart</a>
-                    </div>
-                </div>
+                    <!-- End of Container -->
+                </section>
 
-                <div class="container">
-    <div class="row justify-content-center">
-
-        <div class="col-lg-3 col-md-6 mb-4 pb-2">
-            <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                    <h4 class="font-weight-bold text-white mb-0">₱150</h4>
-                </div>
-                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                    <img class="rounded-circle w-100 h-100" src="products/caramel-macchiato.jpeg" style="object-fit: cover;">
-                </div>
-                <h5 class="font-weight-bold mb-4">Caramel Macchiato</h5>
-                <p>Layers of espresso and caramel sweetness, simply irresistible.</p>
-                <a href="order_form.html" target="_blank" class="btn btn-sm btn-secondary">Add to Cart</a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 pb-2">
-            <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                    <h4 class="font-weight-bold text-white mb-0">₱150</h4>
-                </div>
-                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                    <img class="rounded-circle w-100 h-100" src="products/sweet-oat-latte.jpeg" style="object-fit: cover;">
-                </div>
-                <h5 class="font-weight-bold mb-4">Sweet Oat Latte</h5>
-                <p>Earthy oat milk with a hint of honey to keep things light and lovely.</p>
-                <a href="order_form.html" target="_blank" class="btn btn-sm btn-secondary">Add to Cart</a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 pb-2">
-            <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                    <h4 class="font-weight-bold text-white mb-0">₱150</h4>
-                </div>
-                <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                    <img class="rounded-circle w-100 h-100" src="products/dirty-matcha.jpg" style="object-fit: cover;">
-                </div>
-                <h5 class="font-weight-bold mb-4">Dirty Matcha</h5>
-                <p>A perfect balance of bold espresso and refreshing matcha for an extra kick.</p>
-                <a href="order_form.html" target="_blank" class="btn btn-sm btn-secondary">Add to Cart</a>
-            </div>
-        </div>
-
-    </div> <!-- End of Row -->
-</div> <!-- End of Container -->
-                
-            </div>
+            </section>
         </div>
     </div>
-    </section>
-    <hr>
-    <hr>
 
-<!-- Product Row - Non-Coffee -->
-<section id="products-noncoffee">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center mb-5">
-                <h2 class="coffee-section-title display-2">Non-Coffee</h2>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-
-            <div class="col-lg-3 col-md-6 mb-4 pb-2">
-                <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                    <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                        <h4 class="font-weight-bold text-white mb-0">₱130</h4>
+        <!-- Footer Start -->
+        <div class="container-fluid footer bg-light py-5" style="margin-top: 90px;">
+            <div class="container text-center py-5">
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <a href="index.html" class="navbar-brand m-0">
+                            <h1 class="m-0 mt-n2 display-4 text-primary">Whisk <span class="text-secondary">and</span>
+                                Roast</h1>
+                        </a>
                     </div>
-                    <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                        <img class="rounded-circle w-100 h-100" src="products/choco-licious.jpg" style="object-fit: cover;">
+                    <div class="col-12 mb-4">
+                        <a class="btn btn-outline-secondary btn-social mr-2"
+                            href="https://www.facebook.com/profile.php?id=61565706737046" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-outline-secondary btn-social"
+                            href="https://www.instagram.com/whiskandroast?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
-                    <h5 class="font-weight-bold mb-4">Choco-licious</h5>
-                    <p>Chocolate lovers, this one’s for you—rich, indulgent, and unforgettable.</p>
-                    <a href="order_form.html" target="_blank" class="btn btn-sm btn-secondary">Add to Cart</a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 pb-2">
-                <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                    <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                        <h4 class="font-weight-bold text-white mb-0">₱150</h4>
-                    </div>
-                    <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                        <img class="rounded-circle w-100 h-100" src="products/matcha-magic.jpg" style="object-fit: cover;">
-                    </div>
-                    <h5 class="font-weight-bold mb-4">Matcha Magic</h5>
-                    <p>A refreshingly creamy matcha milk to energize and brighten your day.</p>
-                    <a href="order_form.html" target="_blank" class="btn btn-sm btn-secondary">Add to Cart</a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4 pb-2">
-                <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                    <div class="bg-primary mt-n5 py-3" style="width: 80px;">
-                        <h4 class="font-weight-bold text-white mb-0">₱150</h4>
-                    </div>
-                    <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                        <img class="rounded-circle w-100 h-100" src="products/strawberry-milk.jpg" style="object-fit: cover;">
-                    </div>
-                    <h5 class="font-weight-bold mb-4">Strawberry Milk</h5>
-                    <p>A refreshingly fruity and creamy twist to brighten your day.</p>
-                    <a href="order_form.html" target="_blank" class="btn btn-sm btn-secondary">Add to Cart</a>
-                </div>
-            </div>   
-        </div> <!-- End of Product Row -->
-    </div> <!-- End of Container -->
-</section>
-
-     <!-- Footer Start -->
-     <div class="container-fluid footer bg-light py-5" style="margin-top: 90px;">
-        <div class="container text-center py-5">
-            <div class="row">
-                <div class="col-12 mb-4">
-                    <a href="index.html" class="navbar-brand m-0">
-                        <h1 class="m-0 mt-n2 display-4 text-primary">Whisk <span class="text-secondary">and</span> Roast</h1>
-                    </a>
-                </div>
-                <div class="col-12 mb-4">
-                    <a class="btn btn-outline-secondary btn-social mr-2" href="https://www.facebook.com/profile.php?id=61565706737046" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="btn btn-outline-secondary btn-social" href="https://www.instagram.com/whiskandroast?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-                <div class="col-12 mt-2 mb-4">
-                    <div class="row">
-                        <div class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0">
-                            <h5 class="font-weight-bold mb-2">Get In Touch</h5>
-                            <p class="mb-2">Ilaya, Alabang, Muntinlupa City</p>
-                            <p class="mb-0">09389864783</p>
-                        </div>
-                        <div class="col-sm-6 text-center text-sm-left">
-                            <h5 class="font-weight-bold mb-2">Opening Hours</h5>
-                            <p class="mb-2">Our online store is open 24/7!</p>
-                            <p class="mb-0">Shop anytime, anywhere.</p>
+                    <div class="col-12 mt-2 mb-4">
+                        <div class="row">
+                            <div class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0">
+                                <h5 class="font-weight-bold mb-2">Get In Touch</h5>
+                                <p class="mb-2">Ilaya, Alabang, Muntinlupa City</p>
+                                <p class="mb-0">09389864783</p>
+                            </div>
+                            <div class="col-sm-6 text-center text-sm-left">
+                                <h5 class="font-weight-bold mb-2">Opening Hours</h5>
+                                <p class="mb-2">Our online store is open 24/7!</p>
+                                <p class="mb-0">Shop anytime, anywhere.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12">
-                    <p class="m-0">&copy; <a>Whisk and Roast</a>. All Rights Reserved.</a>
-                    </p>
+                    <div class="col-12">
+                        <p class="m-0">&copy; <a>Whisk and Roast</a>. All Rights Reserved.</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+        <!-- Footer End -->
+    
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -386,119 +532,100 @@
     <script src="js/main.js"></script>
 
     <script>
-       
-            // Elements 
-            
-        const cartPanel = document.getElementById('cart-panel');
-        const closeCart = document.getElementById('close-cart');
-        const cartItemsContainer = document.getElementById('cart-items');
-        const orderButtons = document.querySelectorAll('.product-item .btn-secondary');
-    
-        // Add to cart functionality
-        orderButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent navigation
-                const productItem = button.closest('.product-item');
-                const name = productItem.querySelector('h5').textContent;
-                const price = productItem.querySelector('.bg-primary h4').textContent;
-                const imgSrc = productItem.querySelector('img').src;
-    
-                addToCart(name, price, imgSrc);
-                showCart();
+        $(document).ready(function () {
+            // Load cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            updateCartDisplay();
+
+            // Add to cart function
+            $('.add-to-cart').click(function () {
+                const product = $(this).data('product');
+                const price = $(this).data('price');
+                const image = $(this).data('image');
+
+                let item = cart.find(i => i.product === product);
+                if (item) {
+                    item.quantity += 1;
+                } else {
+                    cart.push({
+                        product: product,
+                        price: price,
+                        image: image,
+                        quantity: 1
+                    });
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
             });
-        });
-    
-        // Add item to cart
-        function addToCart(name, price, imgSrc) {
-            const cartItem = {
-                name: name,
-                price: price,
-        imgSrc: imgSrc
-            };
 
-            // Retrieve the existing cart from localStorage
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Function to update the cart display
+            function updateCartDisplay() {
+                let cartBody = $('#cart-body');
+                let totalPrice = 0;
+                cartBody.empty(); // Clear existing cart items
 
-    // Add the new item
-    cart.push(cartItem);
+                cart.forEach(item => {
+                    let row = `
+                        <tr>
+                            <td><img src="${item.image}" alt="${item.product}" class="cart-item-image"></td>
+                            <td class="dark-brown-text">${item.product}</td>
+                            <td>
+                                <div class="quantity-buttons">
+                                    <button class="quantity-button minus" data-product="${item.product}">-</button>
+                                    <span class="dark-brown-text">${item.quantity}</span>
+                                    <button class="quantity-button plus" data-product="${item.product}">+</button>
+                                </div>
+                            </td>
+                            <td class="dark-brown-text">₱${item.price * item.quantity}</td>
+                        </tr>
+                    `;
+                    cartBody.append(row);
+                    totalPrice += item.price * item.quantity;
+                });
 
-    // Save the updated cart back to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
+                $('#cart-total-price').text('₱' + totalPrice);
+            }
 
-    // Update the cart panel
-    const cartItemElement = document.createElement('div');
-    cartItemElement.classList.add('cart-item');
-    cartItemElement.innerHTML = `
-        <img src="${imgSrc}" alt="${name}">
-        <h6>${name}</h6>
-        <span class="price">${price}</span>
-        <button class="remove-btn">&times;</button>
-    `;
+            // Quantity update functions
+            $('#cart-body').on('click', '.quantity-button', function () {
+                const product = $(this).data('product');
+                const action = $(this).hasClass('plus') ? 'plus' : 'minus';
 
-            // Add event listener for remove button
-            cartItemElement.querySelector('.remove-btn').addEventListener('click', () => {
-                removeFromCart(cartItemElement, name);
+                let item = cart.find(i => i.product === product);
+                if (item) {
+                    if (action === 'plus') {
+                        item.quantity += 1;
+                    } else if (action === 'minus' && item.quantity > 1) {
+                        item.quantity -= 1;
+                    } else if (action === 'minus' && item.quantity === 1) {
+                        cart = cart.filter(i => i.product !== product); // Remove from cart
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartDisplay();
+                }
             });
-    
-            cartItemsContainer.appendChild(cartItemElement);
-        }
-    
-        // Remove item from cart
-        function removeFromCart(cartItemElement, name) {
-            cartItemsContainer.removeChild(cartItemElement);
-            // Retrieve the existing cart from localStorage
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-         // Filter out the item to remove it from the cart
-         cart = cart.filter(item => item.name !== name);
-         // Save the updated cart back to localStorage
-        localStorage.setItem('cart', JSON.stringify(cart));
-        }
-    
-        // Show cart
-        function showCart() {
-            cartPanel.classList.add('show');
-        }
-    
-        // Close cart
-        closeCart.addEventListener('click', () => {
-            cartPanel.classList.remove('show');
 
-            // Update the cart in localStorage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart = cart.filter(item => item.name !== name);
-    localStorage.setItem('cart', JSON.stringify(cart));
+            // Cart toggle
+            const cartIcon = document.getElementById('cart-icon');
+            const cartPanel = document.getElementById('cart-panel');
+            const closeCartBtn = document.getElementById('close-cart');
+
+            cartIcon.addEventListener('click', () => {
+                cartPanel.style.display = 'flex';
+            });
+
+            closeCartBtn.addEventListener('click', () => {
+                cartPanel.style.display = 'none';
+            });
+
+            // Checkout button functionality
+            $('#proceed-to-checkout').click(function () {
+                localStorage.setItem('cart', JSON.stringify(cart)); // Save cart
+                window.location.href = 'order_form.html'; // Redirect
+            });
+
         });
-
-    document.getElementById('proceed-to-checkout').addEventListener('click', function() {
-        window.location.href = 'order_form.html'; // Redirect to the order form page
-    });
-
-    // Load cart from localStorage when the page loads (to restore cart panel state)
-document.addEventListener('DOMContentLoaded', () => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Populate the cart panel with stored items
-    cart.forEach(item => {
-        const cartItemElement = document.createElement('div');
-        cartItemElement.classList.add('cart-item');
-        cartItemElement.innerHTML = `
-            <img src="${item.imgSrc}" alt="${item.name}">
-            <h6>${item.name}</h6>
-            <span class="price">${item.price}</span>
-            <button class="remove-btn">&times;</button>
-        `;
-
-      // Add remove functionality to the button
-      cartItemElement.querySelector('.remove-btn').addEventListener('click', () => {
-            removeFromCart(cartItemElement, item.name);
-        });
-        
-        // Append to cart container
-        cartItemsContainer.appendChild(cartItemElement);
-    });
-});
-</script>
-
+    </script>
 </body>
 
 </html>
