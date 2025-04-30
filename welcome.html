@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,60 +12,94 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #f8f4ec;
             font-family: 'Poppins', sans-serif;
+            background: 
+                linear-gradient(rgba(248, 244, 236, 0.7), rgba(248, 244, 236, 0.7)),
+                url('coffee-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #4e3629;
         }
 
-        .container {
+        .dashboard {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
-            color: #4e3629;
+            padding: 2rem;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            Font-family: "Poppins", sans-serif;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
             color: #7f5539;
         }
 
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-width: 400px;
+            width: 100%;
+        }
+
         .btn {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 1rem;
+            font-size: 1rem;
             font-weight: 600;
-            color: #fff;
+            color: white;
             background-color: #6d4c41;
             border: none;
-            border-radius: 30px;
+            border-radius: 10px;
             text-decoration: none;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .btn:hover {
-            background-color: #4e3629;
+            background-color: #5a3c30;
+            transform: translateY(-2px);
         }
 
-        .btn:active {
-            transform: scale(0.98);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        .logout {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .logout a {
+            color: #6d4c41;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .logout a:hover {
+            text-decoration: underline;
+        }
+
+        @media (min-width: 600px) {
+            .card-container {
+                flex-direction: row;
+                justify-content: center;
+            }
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>WELCOME, whiskandroast!</h1>
-        <a href="admin_dashboard.php" class="btn">ORDER SUMMARY</a>
-        <a href="reportgen.html" class="btn">GENERATED REPORT</a>
-        <p><a href="login.html">Logout</a></p>
-    </div>
-</body>
 
+    <div class="dashboard">
+        <h1>Welcome, Whisk & Roast!</h1>
+        
+        <div class="card-container">
+            <a href="admin_dashboard.php" class="btn">Order Summary</a>
+            <a href="reportgen.html" class="btn">Generated Report</a>
+        </div>
+
+        <div class="logout">
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+
+</body>
 </html>

@@ -3,7 +3,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #e9d5bc; /* Light coffee cream */
+    background: 
+        linear-gradient(rgba(233, 213, 188, 0.4), rgba(233, 213, 188, 0.4)),
+        url('gallery/gallery6.jpg') no-repeat center center fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,10 +15,10 @@ body {
 
 /* Container Styling */
 form {
-    background-color:  #f5f0e6; /* Tan coffee tone */
+    background-color: #f5f0e6;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     width: 300px;
     text-align: center;
     display: flex;
@@ -24,30 +27,32 @@ form {
 }
 
 h2 {
-    color: #4b2e24; /* Dark coffee brown */
-    font-size: 1rem;
+    color: #4b2e24;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
 label {
-    color:  #6d4c41;
+    color: #6d4c41;
     font-size: 0.9rem;
     align-self: flex-start;
+    margin-top: 0.8rem;
+    margin-bottom: 0.2rem;
 }
 
 input[type="text"],
 input[type="password"] {
     width: 100%;
     padding: 0.8rem;
-    margin-bottom: .5rem;
-    border: 1px solid  #6d4c41; /* Medium coffee */
+    margin-bottom: 0.8rem; /* space between inputs */
+    border: 1px solid #6d4c41;
     border-radius: 5px;
     font-size: 0.9rem;
-    background-color: #fdf6eb; /* Coffee cream */
+    background-color: #fdf6eb;
 }
 
 button {
-    background-color:  #6d4c41;/* Medium coffee */
+    background-color: #6d4c41;
     color: white;
     padding: 0.8rem;
     width: 100%;
@@ -59,7 +64,7 @@ button {
 }
 
 button:hover {
-    background-color: #6f4228; /* Darker coffee */
+    background-color: #6f4228;
 }
 
 p {
@@ -68,7 +73,16 @@ p {
     color: #4b2e24;
 }
 
-/* Media Queries for Responsiveness */
+p a {
+    color: #4b2e24;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
     body {
         padding: 1rem;
@@ -79,8 +93,8 @@ p {
         padding: 1.5rem;
     }
 
-    h1 {
-        font-size: 1.5rem;
+    h2 {
+        font-size: 1.1rem;
     }
 
     button {
@@ -94,8 +108,8 @@ p {
         border-radius: 5px;
     }
 
-    h1 {
-        font-size: 1.2rem;
+    h2 {
+        font-size: 1rem;
     }
 
     input[type="text"],
@@ -109,3 +123,5 @@ p {
         font-size: 0.8rem;
     }
 }
+
+
