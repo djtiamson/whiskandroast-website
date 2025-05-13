@@ -197,6 +197,7 @@
             <div class="d-flex align-items-center text-white mb-2 mb-md-0">
                 <a class="text-white pr-2" href="mailto:dannahjanelle.tiamson@tup.edu.ph">Support Team</a>
                 <span class="text-white mx-2">|</span>
+                <a class="text-white pr-2" href="signin.html">Sign-in</a>
             </div>
 
             <!-- Right side -->
@@ -274,6 +275,7 @@
                         <th class="dark-brown-text">Product</th>
                         <th class="dark-brown-text">Quantity</th>
                         <th class="dark-brown-text">Price</th>
+                        <th class="dark-brown-text"> </th>
                     </tr>
                 </thead>
                 <tbody id="cart-body">
@@ -644,6 +646,9 @@
                                 </div>
                             </td>
                             <td class="dark-brown-text">₱${item.price * item.quantity}</td>
+                            <td>
+                            <button class="remove-button" data-product="${item.product}">X</button>
+                            </td>
                         </tr>
                     `;
                     cartBody.append(row);
@@ -670,6 +675,14 @@
                     localStorage.setItem('cart', JSON.stringify(cart));
                     updateCartDisplay();
                 }
+            });
+
+            // Remove button
+            $('#cart-body').on('click', '.remove-button', function () {
+                const product = $(this).data('product');
+                cart = cart.filter(item => item.product !== product);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
             });
 
             // Cart toggle

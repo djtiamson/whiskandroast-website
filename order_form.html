@@ -84,6 +84,7 @@
             <div class="d-flex align-items-center text-white mb-2 mb-md-0">
                 <a class="text-white pr-2" href="mailto:dannahjanelle.tiamson@tup.edu.ph">Support Team</a>
                 <span class="text-white mx-2">|</span>
+                <a class="text-white pr-2" href="signin.html">Sign-in</a>
             </div>
 
             <!-- Right side -->
@@ -161,8 +162,25 @@
                      <h1>Order Summary</h1>
     <div id="cart-summary">
         <!-- Cart items will be dynamically inserted here -->
+        
+        <table class="cart-table">
+           
+            <tbody id="cart-body">
+                <!-- Cart items will be dynamically added here -->
+                
+            </tbody>
+        </table>
+
+        <!-- order_form.html -->
+<table id="order-summary">
+    <tbody id="order-summary-body"></tbody>
+    
+  </table>
+  
+  
+       
     </div>
-    <p class="font-weight-bold mb-5" style="text-align-last: justify; margin-right: 145px;" id="subtotal">Subtotal: $0.00</p> <!-- Subtotal display -->
+    <p id="subtotal" style="text-align:right"><strong>Subtotal:</strong> ₱100.00</p>
     <br>
     <h1 class="font-weight-bold mb-2">Customer Information</h1>
  <hr><br>
@@ -408,17 +426,17 @@
             const cartItemElement = document.createElement('div');
             cartItemElement.classList.add('cart-item');
             cartItemElement.innerHTML = `
-                <img src="${item.imgSrc}" alt="${item.name}">
-                <h6>${item.name}</h6>
-                <span class="price">${item.price}</span>
-                
+                <img src="${item.image}" alt="${item.product}">
+                <h6>${item.product}</h6>
+                <span class="price">PHP${(item.price* item.quantity).toFixed(2)}</span>
+                <p>Qty: ${item.quantity}</p>
             `;
 
             cartContainer.appendChild(cartItemElement);
 
             // Calculate subtotal (price * quantity)
             const itemPrice = parseFloat(item.price.replace('₱', '').trim()); // Remove '₱' and parse as number
-            subtotal += itemPrice ; //* item.quantity Add to subtotal
+            subtotal += itemPrice * item.quantity ; //* item.quantity Add to subtotal
         });
 
      // Update the subtotal display
@@ -439,7 +457,7 @@
         // Recalculate subtotal
         cart.forEach(item => {
             const itemPrice = parseFloat(item.price.replace('₱', '').trim()); // Remove '$' and parse as number
-            subtotal += itemPrice ; //* item.quantity Add to subtotal
+            subtotal += itemPrice * item.quantity ; //* item.quantity Add to subtotal
         });
 
         // Update the subtotal element
@@ -470,6 +488,9 @@
     // Redirect to the confirmation page
     window.location.href = 'order_confirm.html';
 });
+
+
+
 </script>
 
 
