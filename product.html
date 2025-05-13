@@ -287,9 +287,20 @@
             <div class="cart-total dark-brown-text">
                 Total: <span id="cart-total-price">₱0</span>
             </div>
-            <!-- Button with id to handle redirect in JS -->
             <button id="proceed-to-checkout" class="btn btn-primary w-100">Proceed to Checkout</button>
         </div>
+        
+        <script>
+            // Replace with your actual login status check
+            var userLoggedIn = false; // false = no user logged in
+        
+            document.getElementById('proceed-to-checkout').addEventListener('click', function(event) {
+                if (!userLoggedIn) {
+                    event.preventDefault();
+                    window.location.href = 'NA_error.html';
+                }
+            });
+        </script>        
     </div>
 
 
