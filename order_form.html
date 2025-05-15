@@ -176,11 +176,13 @@
     <tbody id="order-summary-body"></tbody>
     
   </table>
-  
+
+
   
        
     </div>
-    <p id="subtotal" style="text-align:right"><strong>Subtotal:</strong> ₱100.00</p>
+    <div id="subtotal" style="text-align:right; font-weight: bold; margin-top: 20px; margin-right: 120px; font-size: large; margin-bottom: 20px;">
+    </div>
     <br>
     <h1 class="font-weight-bold mb-2">Customer Information</h1>
  <hr><br>
@@ -428,17 +430,22 @@
             cartItemElement.innerHTML = `
                 <img src="${item.image}" alt="${item.product}">
                 <h6>${item.product}</h6>
+                <h8>Qty: ${item.quantity}&nbsp;&nbsp;&nbsp;&nbsp;&emsp;</h8>
                 <span class="price">PHP${(item.price* item.quantity).toFixed(2)}</span>
-                <p>Qty: ${item.quantity}</p>
+                
+                
             `;
 
             cartContainer.appendChild(cartItemElement);
 
             // Calculate subtotal (price * quantity)
-            const itemPrice = parseFloat(item.price.replace('₱', '').trim()); // Remove '₱' and parse as number
-            subtotal += itemPrice * item.quantity ; //* item.quantity Add to subtotal
+            // const itemPrice = parseFloat(item.price.replace('PHP', '').trim()); // Remove '₱' and parse as number
+            subtotal += item.price * item.quantity ; //* item.quantity Add to subtotal
         });
-
+// Display subtotal
+if (subtotalElement) {
+            subtotalElement.textContent = `Subtotal: PHP${subtotal.toFixed(2)}`;
+        }
      // Update the subtotal display
      updateSubtotal(cart);    
 
@@ -462,7 +469,7 @@
 
         // Update the subtotal element
         const subtotalElement = document.getElementById('subtotal');
-        subtotalElement.innerHTML = `Subtotal: ₱${subtotal.toFixed(2)}`; // Format to two decimal places
+        subtotalElement.innerHTML = `Subtotal: PHP${subtotal.toFixed(2)}`; // Format to two decimal places
     }
 
 
